@@ -1,4 +1,4 @@
-package fotb.game
+package com.github.fellowship_of_the_bus.lib.game
 
 import java.io.{File, PrintStream}
 import java.util.Scanner

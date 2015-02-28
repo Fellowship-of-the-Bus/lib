@@ -1,4 +1,4 @@
-package fotb.net
+package com.github.fellowship_of_the_bus.lib.net
 
 import java.net.{Socket => JClientSocket, DatagramSocket => JUDPSocket, ServerSocket => JServerSocket, InetAddress,
   DatagramPacket }
