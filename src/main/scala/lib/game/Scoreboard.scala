@@ -1,4 +1,5 @@
-package com.github.fellowship_of_the_bus.lib.game
+package com.github.fellowship_of_the_bus.lib
+package game
 
 import java.io.{File, PrintStream}
 import java.util.Scanner
