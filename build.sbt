@@ -2,7 +2,7 @@ organization := "com.github.fellowship_of_the_bus"
 
 name := "fellowship-of-the-bus-lib"
 
-version := "0.1-SNAPSHOT"
+version := "0.1.1-SNAPSHOT"
 
 // need scalatest also as a build dependency: the build implements a custom reporter
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1"
