@@ -2,12 +2,18 @@ organization := "com.github.fellowship_of_the_bus"
 
 name := "fellowship-of-the-bus-lib"
 
-version := "0.1.1-SNAPSHOT"
+version := "0.2-SNAPSHOT"
+
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+
+resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
 
 // need scalatest also as a build dependency: the build implements a custom reporter
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1"
 
 libraryDependencies += "junit" % "junit" % "4.10" % "test"
+
+libraryDependencies += "org.slick2d" % "slick2d-core" % "latest.integration"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-optimize", "-Yinline-warnings")
 
