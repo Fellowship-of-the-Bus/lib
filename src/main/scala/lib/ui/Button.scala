@@ -1,5 +1,5 @@
 package com.github.fellowship_of_the_bus
-package ui
+package lib.ui
 
 import org.newdawn.slick.{Graphics, Color, Input}
 import org.newdawn.slick.util.InputAdapter
@@ -7,7 +7,6 @@ import org.newdawn.slick.gui.MouseOverArea
 import org.newdawn.slick.state.{StateBasedGame}
 
 object Button {
-  var screenWidth = 800
   val width = 150
   val height = 20
 
@@ -75,6 +74,6 @@ class Button(text: String, x: Float, y: Float, width: Float, height: Float, acti
     g.setColor(bgColor)
     g.fillRoundRect(x, y, width, height, 5)
     g.setColor(textColor)
-    drawCentred(text, Button.screenWidth, y, g)
+    drawCentred(text, y, g)
   }
 }

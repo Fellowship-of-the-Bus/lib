@@ -47,7 +47,7 @@ case class Animation(anim: SlickAnimation) extends Drawable {
   def getWidth: Float = anim.getWidth
   def getHeight: Float = anim.getHeight
   override def update(delta: Long) = {
-   anim.update(delta)
+    anim.update(delta)
   }
 
   def copy() = new Animation(anim.copy)
