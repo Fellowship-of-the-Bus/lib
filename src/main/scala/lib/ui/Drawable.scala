@@ -1,6 +1,9 @@
 package com.github.fellowship_of_the_bus.ui
 import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Graphics}
 
+/** Something that can be drawn directly to the screen.
+  * Primary purpose is to unite org.newdawn.slick.Image 
+  * and org.newdawn.slick.Animation into a single hierarchy */
 trait Drawable {
   def draw(x: Float, y: Float): Unit
   def getWidth: Float
@@ -13,6 +16,7 @@ trait Drawable {
   def stop() = ()
 }
 
+/** wrapper class for Images */
 case class Image(str: String) extends Drawable {
   val img = new SlickImage(str)
   private var centerOfRotation = (0.0f, 0.0f)
@@ -38,6 +42,7 @@ object Animation {
   }
 }
 
+/** wrapper class for animations */
 case class Animation(anim: SlickAnimation) extends Drawable {
   // anim.start
   // val duration = 1000 / imgs.length

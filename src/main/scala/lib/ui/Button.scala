@@ -7,7 +7,9 @@ import org.newdawn.slick.gui.MouseOverArea
 import org.newdawn.slick.state.{StateBasedGame}
 
 object Button {
-  val width = 150
+  /** width of a button */
+  val width = 200
+  /** height of a button */
   val height = 20
 
   def apply(text: String, x: Float, y: Float, action: ()=>Unit)(implicit input: Input, state: Int, game: StateBasedGame) = {
@@ -27,6 +29,9 @@ class Button(text: String, x: Float, y: Float, width: Float, height: Float, acti
   import ButtonMode._
   
   private var mode = NORMAL
+
+  def isMouseOver() = mode == MOUSE_OVER
+  def isMouseDown() = mode == MOUSE_DOWN
 
   def inButton(newx: Int, newy: Int): Boolean = 
     x < newx && newx < x+width && y < newy && newy < y+height
@@ -64,11 +69,13 @@ class Button(text: String, x: Float, y: Float, width: Float, height: Float, acti
   // def mouseWheelMoved(change: Int): Unit = ???
 
   def render(g: Graphics) = {
-    var textColor = Color.red
+    val textColor = Color.red
     var bgColor = Color.white
 
-    if (mode == MOUSE_OVER){
-      bgColor = Color.lightGray
+    if (isMouseOver){
+      bgColor = bgColor.darker(0.2f)
+    } else if (isMouseDown) {
+      bgColor = bgColor.darker(0.3f)
     }
 
     g.setColor(bgColor)
