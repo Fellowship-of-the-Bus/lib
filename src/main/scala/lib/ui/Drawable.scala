@@ -14,6 +14,12 @@ trait Drawable {
   def copy(): Drawable
   def start() = ()
   def stop() = ()
+
+  def setAutoUpdate(b: Boolean) = ()
+  def setLooping(b: Boolean) = ()
+  def setCurrentFrame(index: Int) = ()
+  def setDuration(index: Int, duration: Int) = ()
+  def stopAt(frameIndex: Int) = ()
 }
 
 /** wrapper class for Images */
@@ -59,4 +65,11 @@ case class Animation(anim: SlickAnimation) extends Drawable {
 
   override def start() = anim.start
   override def stop() = anim.stop
+
+  override def setAutoUpdate(b: Boolean) = anim.setAutoUpdate(b)
+  override def setLooping(b: Boolean) = anim.setLooping(b)
+  override def setCurrentFrame(index: Int) = anim.setCurrentFrame(index)
+  override def setDuration(index: Int, duration: Int) = anim.setDuration(index, duration)
+  override def stopAt(frameIndex: Int) = anim.stopAt(frameIndex)
+
 }
