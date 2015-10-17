@@ -16,16 +16,19 @@ trait Lifebar {
   def hp: Float
   def maxHp: Float
 
-  def topLeftCoord: (Float, Float)
+  def topLeftCoord(): (Float, Float)
 
-  def draw(g: Graphics) =
-    if (GameConfig.showLifebars) {
+  def draw(g: Graphics, x: Float, y: Float) =
+    if (GameConfig.showLifebars && hp < maxHp) {
       import Lifebar._
-      val (x, y) = topLeftCoord
+
+      val color = g.getColor
 
       g.setColor(Color.black)
       g.drawRect(x, y-dist, width, height)
       g.setColor(Color.red)
       g.fillRect(x, y-dist, width * hp/maxHp, height)
+
+      g.setColor(color)
     }
 }

@@ -1,4 +1,4 @@
-package com.github.fellowship_of_the_bus.ui
+package com.github.fellowship_of_the_bus.lib.ui
 import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Graphics}
 
 /** Something that can be drawn directly to the screen.
@@ -6,6 +6,8 @@ import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Grap
   * and org.newdawn.slick.Animation into a single hierarchy */
 trait Drawable {
   def draw(x: Float, y: Float): Unit
+  def draw(x: Float, y: Float, width: Float, height: Float): Unit = draw(x, y)  
+
   def getWidth: Float
   def getHeight: Float
   def setRotation(ang: Float) = ()
@@ -20,6 +22,9 @@ trait Drawable {
   def setCurrentFrame(index: Int) = ()
   def setDuration(index: Int, duration: Int) = ()
   def stopAt(frameIndex: Int) = ()
+
+  def reinit(): Unit = ()
+  def setImageColor(r: Float, g: Float, b: Float): Unit = ()
 }
 
 /** wrapper class for Images */
@@ -34,11 +39,24 @@ case class Image(str: String) extends Drawable {
     img.setRotation(rotation)
     img.draw(x, y)
   }
+
+  override def draw(x: Float, y: Float, width: Float, height: Float) = {
+    val (cx, cy) = centerOfRotation
+    img.setCenterOfRotation(cx, cy)
+    img.setRotation(rotation)
+    img.draw(x, y, width, height)
+  }
+
   override def setRotation(ang: Float) = rotation = ang
   override def setCenterOfRotation(x: Float, y: Float) = centerOfRotation = (x,y)
   def getWidth: Float = img.getHeight
   def getHeight: Float = img.getHeight
-  def copy() = this
+
+
+  def copy() = new Image(str)
+
+  override def setImageColor(r: Float, g: Float, b: Float): Unit = 
+    img.setImageColor(r,g,b)
 }
 
 object Animation {

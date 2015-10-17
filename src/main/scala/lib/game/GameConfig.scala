@@ -1,6 +1,8 @@
 package com.github.fellowship_of_the_bus.lib
 package game
 
+import org.newdawn.slick.Graphics
+
 /** Holds global game configuration. */
 object GameConfig {
   /** screen width */
@@ -13,4 +15,6 @@ object GameConfig {
 
   /** true if life bars should be displayed */
   var showLifebars = true
+
+  var graphics: Graphics = null
 }
