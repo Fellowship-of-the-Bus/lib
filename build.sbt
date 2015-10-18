@@ -2,7 +2,7 @@ organization := "com.github.fellowship_of_the_bus"
 
 name := "fellowship-of-the-bus-lib"
 
-version := "0.2-SNAPSHOT"
+version := "0.3-SNAPSHOT"
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
