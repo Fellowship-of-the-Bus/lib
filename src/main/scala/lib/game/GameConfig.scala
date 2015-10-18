@@ -17,4 +17,16 @@ object GameConfig {
   var showLifebars = true
 
   var graphics: Graphics = null
+
+  val Windows = 0
+  val MacOS = 1
+  val Linux = 2
+  val Other = 3
+
+  val OS = System.getProperty("os.name").split(" ")(0).toLowerCase match {
+    case "windows" => Windows
+    case "mac" => MacOS
+    case "linux" => Linux
+    case _ => Other
+  }
 }

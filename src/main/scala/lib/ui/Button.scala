@@ -128,7 +128,7 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
   }
 
   def update(gc: GameContainer, sbg: StateBasedGame, delta: Int): Unit = ()
-  def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit = render(g)
+  override def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit = render(g)
 
   override def init(gc: GameContainer, sbg: StateBasedGame) = {
     super.init(gc, sbg)

@@ -10,11 +10,17 @@ import org.newdawn.slick.state.{StateBasedGame}
 import game._
 
 class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) extends AbstractUIElement(x, y, width, height) {
-  var children: List[UIElement] = List()
+  // type Game <: AnyRef
   protected var game: Game = null
+
+  var children: List[UIElement] = List()
 
   def addChildren(child: UIElement, childs: UIElement*): Unit = {
     val newchildren = child::childs.toList
+    addChildren(newchildren)
+  }
+
+  def addChildren(newchildren: List[UIElement]) = {
     for (c <- newchildren) {
       c.absoluteX += absoluteX
       c.absoluteY += absoluteY
@@ -40,7 +46,7 @@ class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) 
     g.setLineWidth(linewidth)
   }
 
-  def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics) = {
+  override def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics) = {
     g.translate(x, y)
     draw(gc, sbg, g)
     for (child <- children) {

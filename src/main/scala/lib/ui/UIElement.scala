@@ -19,7 +19,7 @@ trait UIElement {
   var sbg: StateBasedGame = null
 
   def update(gc: GameContainer, sbg: StateBasedGame, delta: Int): Unit
-  def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit
+  def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit = draw(gc, sbg, g)
   def init(gc: GameContainer, sbg: StateBasedGame): Unit = {
     this.sbg = sbg
     setInput(gc.getInput)
