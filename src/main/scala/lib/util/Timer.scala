@@ -22,6 +22,16 @@ trait TimerListener {
     }
     timers = timers.filter(_.canFire)
   }
+
+  /**
+   * Unregister all timer events
+   */
+  def cancelAll() = timers = Vector[Timer]()
+
+  /**
+   * Returns true if there are active timer events
+   */
+  def ticking(): Boolean = ! timers.isEmpty
 }
 
 sealed trait TimerFrequency
@@ -32,18 +42,20 @@ case class FireN(n: Long) extends TimerFrequency {
   require(n >= 1)
 }
 
-abstract class Timer(timeTillAction: Long, action: () => Unit, frequency: TimerFrequency = FireOnce) {
+abstract class Timer(timeTillAction: Long, protected val action: () => Unit, frequency: TimerFrequency = FireOnce) {
   var repeat = frequency
 
   private var timer: Long = 0
   def tick(tickAmt: Long): Unit = {
     timer = timer + tickAmt
     if (canFire && timer >= timeTillAction) {
-      action()
+      fire()
       timer = 0
       updateRepeat
     }
   }
+
+  protected def fire(): Unit = action()
 
   protected def updateRepeat() = repeat = repeat match {
     case RepeatForever => RepeatForever
@@ -56,7 +68,7 @@ abstract class Timer(timeTillAction: Long, action: () => Unit, frequency: TimerF
   def timeRemaining(): Long = timeTillAction - timer
 
   /** true if this Timer can fire */
-  def canFire() = repeat match {
+  def canFire(): Boolean = repeat match {
     case Finished => false
     case _ => true
   }
@@ -74,7 +86,33 @@ extends Timer(timeTillAction, action, frequency) {
 }
 
 /**
- * Timer which ticks by the received amount avery time 
+ * Timer which ticks by the received amount every time 
  */
 class MSTimer(timeTillAction: Long, action: () => Unit, frequency: TimerFrequency = FireOnce) 
 extends Timer(timeTillAction, action, frequency)
+
+
+trait ConditionalTimer extends Timer {
+  protected val action: () => Unit
+  protected val query: () => Boolean
+
+  override def fire(): Unit = {
+    if (query()) {
+      action()
+    }
+  }
+}
+
+/**
+ * Timer which requires n calls to tick to fire and waits 
+ * to perform its action until its query function returns true
+ */
+class ConditionalTickTimer(timeTillAction: Long, action: () => Unit, protected val query: () => Boolean, frequency: TimerFrequency = FireOnce) 
+extends TickTimer(timeTillAction, action, frequency) with ConditionalTimer
+
+/**
+ * Timer which ticks by the received amount every time
+ * and waits to perform its action until its query function returns true
+ */
+class ConditionalMSTimer(timeTillAction: Long, action: () => Unit, protected val query: () => Boolean, frequency: TimerFrequency = FireOnce) 
+extends MSTimer(timeTillAction, action, frequency) with ConditionalTimer

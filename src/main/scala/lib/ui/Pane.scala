@@ -49,10 +49,8 @@ class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) 
   override def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics) = {
     g.translate(x, y)
     draw(gc, sbg, g)
-    for (child <- children) {
-      if (child.isVisible()) {
-        child.render(gc, sbg, g)
-      }
+    for (child <- children; if (child.isVisible)) {
+      child.render(gc, sbg, g)
     }
     g.translate(-x, -y)
   }
