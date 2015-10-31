@@ -56,15 +56,12 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
   def isMouseOver() = mode == MOUSE_OVER
   def isMouseDown() = mode == MOUSE_DOWN
 
-  def inButton(newx: Int, newy: Int): Boolean = 
-    absoluteX < newx && newx < absoluteX+width && absoluteY < newy && newy < absoluteY+height
-
   override def setInput(input: Input) = {
     input.addMouseListener(this)
   }
 
   override def mouseMoved(oldx: Int, oldy: Int, newx: Int, newy: Int): Unit = {
-    if (inButton(newx, newy)) {
+    if (inside(newx, newy)) {
       mode = MOUSE_OVER
     } else {
       mode = NORMAL
@@ -79,7 +76,7 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
   }
 
   override def mouseReleased(button: Int, x: Int, y: Int): Unit = {
-    val in = inButton(x, y)
+    val in = inside(x, y)
     if (mode == MOUSE_DOWN && button == LEFT && in) {
       if (selectable()) {
         action()

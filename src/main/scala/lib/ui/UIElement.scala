@@ -1,7 +1,7 @@
 package com.github.fellowship_of_the_bus
 package lib.ui
 
-import org.newdawn.slick.{GameContainer, Graphics, Color, Input, KeyListener}
+import org.newdawn.slick.{GameContainer, Graphics, Color, Input}
 import org.newdawn.slick.state.{BasicGameState, StateBasedGame}
 
 trait UIElement {
@@ -27,8 +27,8 @@ trait UIElement {
 
   def draw(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit
 
+  // default implementation do that init can call setInput
   def setInput(input: Input) = ()
-
 
   var uiState: Int = -1
   def setState(st: Int) = {
@@ -41,6 +41,9 @@ trait UIElement {
     this
   }
   def isVisible() = visible()
+
+  protected def inside(newx: Int, newy: Int) =
+    absoluteX < newx && newx < absoluteX+width && absoluteY < newy && newy < absoluteY+height
 }
 
 abstract class AbstractUIElement(val x: Float, val y: Float, val width: Float, val height: Float) extends UIElement {
