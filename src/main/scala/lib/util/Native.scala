@@ -19,10 +19,8 @@ object Native {
   /** Returns the system dependent install location. */
   def findInstallDir() = {
     val location = os match {
-      case "linux" | "macosx" => 
+      case "linux" | "macosx" | "windows" => 
         System.getProperty("user.home") + "/bin"
-      case "windows" =>
-        System.getProperty("/Program Files")
       case _ =>
         println("Unsupported platform: ${os.name}")
     }
@@ -56,7 +54,7 @@ object Native {
   /** Loads native libraries from the enclosing jar file, if there is one.
     * Needs to copy the native libraries to a location outside of the Jar,
     * which is then added to the java library path. */
-  def loadLibraryFromJar() = {
+  def loadLibraryFromJar[T](classObject: Class[T] = getClass) = {
     val dir = findInstallDir
     val natdir = new File(dir, "natives")
 
@@ -66,7 +64,7 @@ object Native {
     if (! natdir.exists) {
       natdir.mkdirs()
       // load files from jar into dir/natives
-      val jar = new JarFile(getClass.getProtectionDomain.getCodeSource.getLocation.getFile)
+      val jar = new JarFile(classObject.getProtectionDomain.getCodeSource.getLocation.getFile)
 
       installNatives(jar, natdir)
     }
