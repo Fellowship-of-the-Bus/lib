@@ -17,16 +17,21 @@ trait Coordinates {
   }
 
   def coordinates(): (Float, Float, Float, Float)
+  def centerCoord(): (Float, Float)
 }
 
 trait TopLeftCoordinates extends Coordinates {
   def coordinates(): (Float, Float, Float, Float) = {
     (x, y, x+width, y+height)
   }
+
+  def centerCoord(): (Float, Float) = (x+width/2,y+height/2)
 }
 
 trait CenteredCoordinates extends Coordinates {
   def coordinates() = {
     (x-width/2, y-height/2, x+width/2, y+height/2)
   }
+
+  def centerCoord() = (x, y)
 }

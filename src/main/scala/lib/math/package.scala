@@ -14,7 +14,6 @@ package object math {
     else if (cmp.gt(v, upper)) upper
     else v
   }
-
 }
 
 

@@ -14,9 +14,20 @@ object Rect {
     val (cx1, cy1, cx2, cy2) = coord2
     Rect(x1,y1,x2,y2).intersect(cx1,cy1,cx2,cy2)
   }
+
+  def apply(x1: Float, y1: Float, x2: Float, y2: Float) = {
+    val nx1 = min(x1, x2)
+    val nx2 = max(x1, x2)
+    val ny1 = min(y1, y2)
+    val ny2 = max(y1, y2) 
+    new Rect(nx1, ny1, nx2, ny2)
+  }
+
+  def unapply(rect: Rect): Option[(Float, Float, Float, Float)] =
+    Some((rect.x1, rect.y1, rect.x2, rect.y2))
 }
 
-case class Rect(x1: Float, y1: Float, x2: Float, y2: Float) {
+class Rect(val x1: Float, val y1: Float, val x2: Float, val y2: Float) {
   require(x1 <= x2)
   require(y1 <= y2)
 

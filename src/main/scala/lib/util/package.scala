@@ -5,10 +5,14 @@ import java.util.Scanner
 package object util {
   import scala.util.Random
   private val random = new Random
+
+  /** random number in range [0, i) */
   def rand(i: Int) = random.nextInt(i)
+
+  /** random number in range [lower, upper] */
   def rand(lower: Int, upper: Int) = {
     require(lower <= upper)
-    random.nextInt(upper-lower) + lower
+    random.nextInt(upper-lower+1) + lower
   }
 
   def scanFile(filename: String): Scanner = {
