@@ -2,14 +2,8 @@ organization := "com.github.fellowship_of_the_bus"
 
 name := "fellowship-of-the-bus-lib"
 
-version := "0.3-SNAPSHOT"
-
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
-
-resolvers += "Sonatype OSS Release" at "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-
 // need scalatest also as a build dependency: the build implements a custom reporter
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
 libraryDependencies += "junit" % "junit" % "4.10" % "test"
 
@@ -17,15 +11,7 @@ libraryDependencies += "org.slick2d" % "slick2d-core" % "latest.integration"
 
 scalacOptions ++= Seq("-deprecation", "-feature", "-optimize", "-Yinline-warnings")
 
-// This resolver declaration is added by default in SBT 0.12.x
-resolvers += Resolver.url(
-  "sbt-plugin-releases",
-  new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/")
-)(Resolver.ivyStylePatterns)
-
 // addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "0.2.1")
-
-addSbtPlugin("com.github.gseitz" % "sbt-release" % "0.8.5")
 
 publishTo := {
   val nexus = "https://oss.sonatype.org/"

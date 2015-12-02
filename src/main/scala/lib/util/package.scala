@@ -16,7 +16,10 @@ package object util {
   }
 
   def scanFile(filename: String): Scanner = {
-    val stream = Native.getClass.getClassLoader().getResourceAsStream(filename)
-    new Scanner(stream)
+    new Scanner(openFileAsStream(filename))
+  }
+
+  def openFileAsStream(filename: String) = {
+    Native.getClass.getClassLoader().getResourceAsStream(filename)    
   }
 }
