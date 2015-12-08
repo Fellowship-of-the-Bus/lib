@@ -1,7 +1,9 @@
 package com.github.fellowship_of_the_bus.lib.net
 
-import java.net.{Socket => JClientSocket, DatagramSocket => JUDPSocket, ServerSocket => JServerSocket, InetAddress,
-  DatagramPacket }
+import java.net.{Socket => JClientSocket, ServerSocket => JServerSocket, InetAddress,
+  SocketAddress, InetSocketAddress }
+import java.nio.ByteBuffer
+import java.nio.channels.{DatagramChannel => JUDPSocket}
 import java.io.PrintStream
 import java.util.Scanner
 
@@ -35,34 +37,39 @@ case class ClientSocket(conn: JClientSocket) extends Socket {
 class UDPSocket(port: Int, buffLen: Int)  {
   def this(port: Int) = this(port, 256)
 
-  private val conn = new JUDPSocket(port)
+  private val conn = {
+    var channel = JUDPSocket.open()
+    channel.socket().bind(new InetSocketAddress(port))
+    channel.configureBlocking(false)
+    channel
+  }
 
-  private lazy val buffer = new Array[Byte](buffLen)
-  private lazy val packet = new DatagramPacket(buffer, buffer.length)
-
-  def send(s: String)(implicit addr: (InetAddress, Int)) = {
+  def send(s: String)(implicit addr: SocketAddress) = {
     val bytes = s.getBytes
-    val (ipAddr, port) = addr
-    val sendPacket = new DatagramPacket(bytes, bytes.length, ipAddr, port)
-    conn.send(sendPacket)
+    val buffer = ByteBuffer.wrap(bytes)
+    conn.send(buffer, addr) // this?
   }
 
   // needs to be non-blocking, fix this
-  def receive(): Option[(String, InetAddress, Int)] = {
-    conn.receive(packet)
-    val msg = new String(buffer, packet.getOffset, packet.getLength)
-    val ipAddr = packet.getAddress()
-    val port = packet.getPort()
-    Some((msg, ipAddr, port))
+  def receive(): Option[(String, SocketAddress)] = {
+    val buffer = ByteBuffer.allocate(buffLen)
+    val sender = conn.receive(buffer)
+    if (sender == null) None
+    else {    
+      val msg = new String(buffer.array, buffer.arrayOffset, buffer.position-buffer.arrayOffset)
+      Some((msg, sender))
+    }
   }
 
-  def receiveNow() = {
-    conn.receive(packet)
-    val msg = new String(buffer, packet.getOffset, packet.getLength)
-    val ipAddr = packet.getAddress()
-    val port = packet.getPort()
-    Some((msg, ipAddr, port))    
-  }
+  // def receiveNow() = {
+  //   // conn.receive(packet)
+  //   // val msg = new String(buffer, packet.getOffset, packet.getLength)
+  //   // val ipAddr = packet.getAddress()
+  //   // val port = packet.getPort()
+  //   // Some((msg, ipAddr, port))    
+  // }
+
+  // def getIP() = conn.getInetAddress()
 }
 
 // // UDP + connection
