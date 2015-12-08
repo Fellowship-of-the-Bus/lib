@@ -1,13 +1,16 @@
-package com.github.fellowship_of_the_bus.lib.util
+package com.github.fellowship_of_the_bus.lib
+package util
+
+import math.min
 
 /**
- * TimerListeners can register Timer events
+ * TimerManagers can register Timer events
  */
-trait TimerListener {
-  private var timers = Vector[Timer]()
+trait TimerManager {
+  private[util] var timers = Vector[Timer]()
 
   /**
-   * Registers a timer event
+   * Registers a timer event with this TimerListener. 
    */
   def addTimer(timer: Timer) = {
     timers = timers :+ timer
@@ -16,12 +19,13 @@ trait TimerListener {
   /**
    * ticks all registered timers
    */
-  def update(delta: Long) = {
-    for (timer <- timers) {
-      timer.tick(delta)
-    }
-    timers = timers.filter(_.canFire)
-  }
+  def tick(delta: Long): Unit
+
+  /**
+   * ticks all registered timers
+   * @deprecated
+   */
+  def update(delta: Long) = tick(delta)
 
   /**
    * Unregister all timer events
@@ -31,7 +35,41 @@ trait TimerListener {
   /**
    * Returns true if there are active timer events
    */
-  def ticking(): Boolean = ! timers.isEmpty
+  def ticking(): Boolean = timers.exists(_.canFire)
+}
+
+trait TimerListener extends TimerManager {
+  /**
+   * ticks all registered timers and causes them to
+   * fire if they become ready
+   */
+  def tick(delta: Long) = {
+    for (timer <- timers) {
+      timer.tick(delta)
+      timer.fire()
+    }
+    timers = timers.filter(_.canFire)
+  }
+}
+
+/** A TimerManager that does not automatically call
+  * fire on ready timers. To fire the ready timers, 
+  * the user should call fire on the ManualTimerManager 
+  * object. */
+trait ManualTimerManager extends TimerManager {
+  def tick(delta: Long) = {
+    for (timer <- timers) {
+      timer.tick(delta)
+    }
+  }
+
+  /** fires all ready timers */
+  def fire() = {
+    for (timer <- timers) {
+      timer.fire()
+    }
+    timers = timers.filter(_.canFire)        
+  }
 }
 
 sealed trait TimerFrequency
@@ -43,20 +81,26 @@ case class FireN(n: Long) extends TimerFrequency {
 }
 
 abstract class Timer(timeTillAction: Long, protected val action: () => Unit, frequency: TimerFrequency = FireOnce) {
-  var repeat = frequency
+  private var repeat = frequency
 
   private var timer: Long = 0
+  /** decreases the amount of time remaining until the timer can fire */
   def tick(tickAmt: Long): Unit = {
-    timer = timer + tickAmt
-    if (canFire && timer >= timeTillAction) {
-      fire()
+    timer = min(timer + tickAmt, timeTillAction)
+  }
+
+  /** performs the timer action if the timer is ready, and resets
+    * internal state for future ticking/firing */
+  def fire(): Unit = {
+    if (ready) {
+      action()
       timer = 0
       updateRepeat
     }
   }
 
-  protected def fire(): Unit = action()
-
+  /** updates the number of times this timer can fire again.
+    * Called when a timer successfully fires. */
   protected def updateRepeat() = repeat = repeat match {
     case RepeatForever => RepeatForever
     case FireOnce | FireN(1) => Finished
@@ -67,7 +111,10 @@ abstract class Timer(timeTillAction: Long, protected val action: () => Unit, fre
   /** The amount that the timer has to be ticked before the action fires */
   def timeRemaining(): Long = timeTillAction - timer
 
-  /** true if this Timer can fire */
+  /** true if this timer is ready to fire */
+  def ready() = canFire && timeTillAction == timer
+
+  /** true if this Timer can fire again at some point in the future */
   def canFire(): Boolean = repeat match {
     case Finished => false
     case _ => true
@@ -75,7 +122,7 @@ abstract class Timer(timeTillAction: Long, protected val action: () => Unit, fre
 }
 
 /**
- * Timer which requires n calls to tick to fire
+ * Timer which requires n calls to tick before it can fire
  */
 class TickTimer(timeTillAction: Long, action: () => Unit, frequency: TimerFrequency = FireOnce) 
 extends Timer(timeTillAction, action, frequency) {
@@ -93,18 +140,13 @@ extends Timer(timeTillAction, action, frequency)
 
 
 trait ConditionalTimer extends Timer {
-  protected val action: () => Unit
   protected val query: () => Boolean
 
-  override def fire(): Unit = {
-    if (query()) {
-      action()
-    }
-  }
+  override def ready() = super.ready() && query()
 }
 
 /**
- * Timer which requires n calls to tick to fire and waits 
+ * Timer which requires n calls to tick before it can fire and waits 
  * to perform its action until its query function returns true
  */
 class ConditionalTickTimer(timeTillAction: Long, action: () => Unit, protected val query: () => Boolean, frequency: TimerFrequency = FireOnce) 
