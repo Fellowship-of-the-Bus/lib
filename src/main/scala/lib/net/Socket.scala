@@ -1,11 +1,42 @@
 package com.github.fellowship_of_the_bus.lib.net
 
 import java.net.{Socket => JClientSocket, ServerSocket => JServerSocket, InetAddress,
-  SocketAddress, InetSocketAddress }
+  SocketAddress, InetSocketAddress, NetworkInterface, SocketException, URL }
 import java.nio.ByteBuffer
 import java.nio.channels.{DatagramChannel => JUDPSocket}
-import java.io.PrintStream
+import java.io.{PrintStream, BufferedReader, InputStreamReader }
 import java.util.Scanner
+
+object IP {
+  private val lookupAddr = "http://checkip.amazonaws.com/"
+
+  /** produce a LAN address of this machine */
+  def localIP() = {
+    import scala.collection.Iterator
+    import scala.collection.JavaConversions.enumerationAsScalaIterator
+    
+    val nics: Iterator[NetworkInterface] = NetworkInterface.getNetworkInterfaces
+    val addrs = for {
+      nic <- nics.toList
+      if (nic.isUp)
+      if (! nic.isLoopback)
+      addr <- nic.getInetAddresses
+      if (addr.isSiteLocalAddress)
+    } yield addr
+
+    // I'm not sure how to choose if there is more than
+    // one option at this point, so just produce the first item
+    addrs.head
+  }
+
+  /** produce the public IP address of this machine */
+  def publicIP() = {
+    val url = new URL(lookupAddr)
+    val in = new BufferedReader(new InputStreamReader(url.openStream))
+    val ip = in.readLine
+    InetAddress.getByName(ip)
+  }
+}
 
 trait Socket extends java.io.Closeable {
   protected def conn: java.io.Closeable
@@ -31,7 +62,7 @@ case class ClientSocket(conn: JClientSocket) extends Socket {
   def receive() = if (in.hasNextLine) Some(in.nextLine) else None
   def receiveNow() = in.nextLine
 
-  def connection() = conn.getRemoteSocketAddress //(conn.getAddress, conn.getPort)
+  def connection() = conn.getRemoteSocketAddress
 }
 
 class UDPSocket(port: Int, buffLen: Int)  {
@@ -54,11 +85,9 @@ class UDPSocket(port: Int, buffLen: Int)  {
   def receive(): Option[(String, SocketAddress)] = {
     val buffer = ByteBuffer.allocate(buffLen)
     val sender = conn.receive(buffer)
-    if (sender == null) None
-    else {    
-      val msg = new String(buffer.array, buffer.arrayOffset, buffer.position-buffer.arrayOffset)
-      Some((msg, sender))
-    }
+    Option(sender).map(
+      new String(buffer.array, buffer.arrayOffset, 
+        buffer.position-buffer.arrayOffset) -> _)
   }
 
   // def receiveNow() = {
