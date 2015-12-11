@@ -1,37 +1,44 @@
 package com.github.fellowship_of_the_bus.lib.game
 
-trait Coordinates {
-  def x: Float
-  def y: Float
-  def width: Float
-  def height: Float
+object Coordinates {
+  type Val = Float
+  type Coord = (Val, Val)
+  type CoordPair = (Val, Val, Val, Val)
+}
+import Coordinates._
 
-  def topLeftCoord(): (Float, Float) = {
+trait Coordinates {
+  def x: Val
+  def y: Val
+  def width: Val
+  def height: Val
+
+  def topLeftCoord(): Coord = {
     val (x, y, _, _) = coordinates
     (x, y)
   }
 
-  def bottomRightCoord(): (Float, Float) = {
+  def bottomRightCoord(): Coord = {
     val (_, _, x, y) = coordinates
     (x, y)
   }
 
-  def coordinates(): (Float, Float, Float, Float)
-  def centerCoord(): (Float, Float)
+  def coordinates(): CoordPair
+  def centerCoord(): Coord
 }
 
 trait TopLeftCoordinates extends Coordinates {
-  def coordinates(): (Float, Float, Float, Float) = {
+  def coordinates(): CoordPair = {
     (x, y, x+width, y+height)
   }
 
-  def centerCoord(): (Float, Float) = (x+width/2,y+height/2)
+  def centerCoord(): Coord = (x+width/2,y+height/2)
 }
 
 trait CenteredCoordinates extends Coordinates {
-  def coordinates() = {
+  def coordinates(): CoordPair = {
     (x-width/2, y-height/2, x+width/2, y+height/2)
   }
 
-  def centerCoord() = (x, y)
+  def centerCoord(): Coord = (x, y)
 }

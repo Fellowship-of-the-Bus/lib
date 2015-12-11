@@ -2,35 +2,35 @@ package com.github.fellowship_of_the_bus.lib.ui
 import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Graphics}
 
 /** Something that can be drawn directly to the screen.
-  * Primary purpose is to unite org.newdawn.slick.Image 
+  * Primary purpose is to unite org.newdawn.slick.Image
   * and org.newdawn.slick.Animation into a single hierarchy */
 trait Drawable {
   var scaleFactor: Float = 1.0f
 
   def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit
-  def draw(x: Float, y: Float, width: Float, height: Float): Unit = draw(x, y)  
+  def draw(x: Float, y: Float, width: Float, height: Float): Unit = draw(x, y)
 
   def getWidth: Float
   def getHeight: Float
-  def setRotation(ang: Float) = ()
-  def setCenterOfRotation(x: Float, y: Float) = ()
-  def update(delta: Long) = ()
+  def setRotation(ang: Float): Unit = ()
+  def setCenterOfRotation(x: Float, y: Float): Unit = ()
+  def update(delta: Long): Unit = ()
   def copy(): Drawable
-  def start() = ()
-  def stop() = ()
+  def start(): Unit = ()
+  def stop(): Unit = ()
 
-  def setAutoUpdate(b: Boolean) = ()
-  def setLooping(b: Boolean) = ()
-  def setCurrentFrame(index: Int) = ()
-  def setDuration(index: Int, duration: Int) = ()
-  def stopAt(frameIndex: Int) = ()
+  def setAutoUpdate(b: Boolean): Unit = ()
+  def setLooping(b: Boolean): Unit = ()
+  def setCurrentFrame(index: Int): Unit = ()
+  def setDuration(index: Int, duration: Int): Unit = ()
+  def stopAt(frameIndex: Int): Unit = ()
 
   def reinit(): Unit = ()
   def setImageColor(r: Float, g: Float, b: Float): Unit = ()
 }
 
 object Image {
-  def apply(str: String, scaleFactor: Float) = {
+  def apply(str: String, scaleFactor: Float): Image = {
     val im = new Image(str)
     im.scaleFactor = scaleFactor
     im
@@ -43,7 +43,7 @@ case class Image(str: String) extends Drawable {
   private var centerOfRotation = (0.0f, 0.0f)
   private var rotation = 0.0f
 
-  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false) = {
+  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit = {
     val img = this.img.getFlippedCopy(flipX, flipY)
     val (cx, cy) = centerOfRotation
     img.setCenterOfRotation(cx, cy)
@@ -51,26 +51,27 @@ case class Image(str: String) extends Drawable {
     img.draw(x, y, scaleFactor)
   }
 
-  override def draw(x: Float, y: Float, width: Float, height: Float) = {
+  override def draw(x: Float, y: Float, width: Float, height: Float): Unit = {
     val (cx, cy) = centerOfRotation
     img.setCenterOfRotation(cx, cy)
     img.setRotation(rotation)
     img.draw(x/scaleFactor, y/scaleFactor, width, height) // what?
   }
 
-  override def setRotation(ang: Float) = rotation = ang
-  override def setCenterOfRotation(x: Float, y: Float) = centerOfRotation = (x/scaleFactor,y/scaleFactor)
+  override def setRotation(ang: Float): Unit = rotation = ang
+  override def setCenterOfRotation(x: Float, y: Float): Unit =
+    centerOfRotation = (x/scaleFactor,y/scaleFactor)
   def getWidth: Float = img.getWidth * scaleFactor
   def getHeight: Float = img.getHeight * scaleFactor
 
 
-  def copy() = {
+  def copy(): Image = {
     val img = new Image(str)
     img.scaleFactor = scaleFactor
     img
   }
 
-  override def setImageColor(r: Float, g: Float, b: Float): Unit = 
+  override def setImageColor(r: Float, g: Float, b: Float): Unit =
     img.setImageColor(r,g,b)
 }
 
@@ -91,26 +92,27 @@ case class Animation(anim: SlickAnimation) extends Drawable {
 // imgs: Array[SlickImage]
 
   // fix so that draw does the scaling
-  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false) = anim.draw(x/scaleFactor, y/scaleFactor)
+  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit =
+    anim.draw(x/scaleFactor, y/scaleFactor)
   def getWidth: Float = anim.getWidth * scaleFactor
   def getHeight: Float = anim.getHeight * scaleFactor
-  override def update(delta: Long) = {
+  override def update(delta: Long): Unit = {
     anim.update(delta)
   }
 
-  def copy() = {
+  def copy(): Animation = {
     val cpy = new Animation(anim.copy)
     cpy.scaleFactor = scaleFactor
     cpy
   }
 
-  override def start() = anim.start
-  override def stop() = anim.stop
+  override def start(): Unit = anim.start
+  override def stop(): Unit = anim.stop
 
-  override def setAutoUpdate(b: Boolean) = anim.setAutoUpdate(b)
-  override def setLooping(b: Boolean) = anim.setLooping(b)
-  override def setCurrentFrame(index: Int) = anim.setCurrentFrame(index)
-  override def setDuration(index: Int, duration: Int) = anim.setDuration(index, duration)
-  override def stopAt(frameIndex: Int) = anim.stopAt(frameIndex)
+  override def setAutoUpdate(b: Boolean): Unit = anim.setAutoUpdate(b)
+  override def setLooping(b: Boolean): Unit = anim.setLooping(b)
+  override def setCurrentFrame(index: Int): Unit = anim.setCurrentFrame(index)
+  override def setDuration(index: Int, duration: Int): Unit = anim.setDuration(index, duration)
+  override def stopAt(frameIndex: Int): Unit = anim.stopAt(frameIndex)
 
 }

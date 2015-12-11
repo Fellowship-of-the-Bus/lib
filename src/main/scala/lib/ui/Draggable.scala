@@ -9,11 +9,11 @@ trait Draggable extends UIElement with MouseListener {
   def mouseMoved(oldx: Int, oldy: Int, newx: Int, newy: Int): Unit
   def mouseWheelMoved(change: Int): Unit
 
-  def inputEnded() = ()
-  def inputStarted() = ()
-  def isAcceptingInput() = true
+  def inputEnded(): Unit = ()
+  def inputStarted(): Unit = ()
+  def isAcceptingInput(): Boolean = true
 
-  override def setInput(input: Input) = {
+  override def setInput(input: Input): Unit = {
     input.addMouseListener(this)
   }
 

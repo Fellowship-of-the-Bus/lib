@@ -7,10 +7,10 @@ package object util {
   private val random = new Random
 
   /** random number in range [0, i) */
-  def rand(i: Int) = random.nextInt(i)
+  def rand(i: Int): Int = random.nextInt(i)
 
   /** random number in range [lower, upper] */
-  def rand(lower: Int, upper: Int) = {
+  def rand(lower: Int, upper: Int): Int = {
     require(lower <= upper)
     random.nextInt(upper-lower+1) + lower
   }
@@ -19,7 +19,7 @@ package object util {
     new Scanner(openFileAsStream(filename))
   }
 
-  def openFileAsStream(filename: String) = {
-    Native.getClass.getClassLoader().getResourceAsStream(filename)    
+  def openFileAsStream(filename: String): java.io.InputStream = {
+    Native.getClass.getClassLoader().getResourceAsStream(filename)
   }
 }

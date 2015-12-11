@@ -1,6 +1,7 @@
 package com.github.fellowship_of_the_bus.lib.util
 
-import java.io.{File,FileNotFoundException,InputStream,OutputStream,FileOutputStream,FileInputStream,IOException}
+import java.io.{File,FileNotFoundException,InputStream,OutputStream,FileOutputStream,
+  FileInputStream,IOException}
 import java.util.jar.JarFile
 
 /**
@@ -17,19 +18,19 @@ object Native {
   }
 
   /** Returns the system dependent install location. */
-  def findInstallDir() = {
+  def findInstallDir(): File = {
     val location = os match {
-      case "linux" | "macosx" | "windows" => 
+      case "linux" | "macosx" | "windows" =>
         System.getProperty("user.home") + "/bin"
       case _ =>
-        println("Unsupported platform: ${os.name}")
+        println(s"Unsupported platform: ${os}")
     }
 
     new File(location + "/fellowship-of-the-bus")
   }
 
   /** Installs all files from jar/natives into natdir */
-  def installNatives(jar: JarFile, natdir: File) = {
+  def installNatives(jar: JarFile, natdir: File): Unit = {
     val entries = jar.entries
     while (entries.hasMoreElements) {
       val entry = entries.nextElement
@@ -54,7 +55,7 @@ object Native {
   /** Loads native libraries from the enclosing jar file, if there is one.
     * Needs to copy the native libraries to a location outside of the Jar,
     * which is then added to the java library path. */
-  def loadLibraryFromJar[T](classObject: Class[T] = getClass) = {
+  def loadLibraryFromJar[T](classObject: Class[T] = getClass): Unit = {
     val dir = findInstallDir
     val natdir = new File(dir, "natives")
 
@@ -69,19 +70,19 @@ object Native {
       installNatives(jar, natdir)
     }
 
-    // java.library.path is cached by the JVM, 
+    // java.library.path is cached by the JVM,
     // need to reset it to null to get it to reload
     val path = System.getProperty("java.library.path")
     System.setProperty("java.library.path", path + separator + natdir.getAbsolutePath)
     val fieldSysPath = classOf[ClassLoader].getDeclaredField("sys_paths")
-    fieldSysPath.setAccessible(true);
-    fieldSysPath.set(null, null);
+    fieldSysPath.setAccessible(true)
+    fieldSysPath.set(null, null) // scalastyle:ignore null
   }
 
   /** Copies all of the data from src to dst */
-  def copy(src: InputStream, dst: OutputStream) = {
+  def copy(src: InputStream, dst: OutputStream): Unit = {
     // Prepare buffer for data copying
-    val buffer = new Array[Byte](1024)
+    val buffer = new Array[Byte](1024) // scalastyle:ignore magic.number
 
     try {
       def loop(readBytes: => Int): Unit = {
@@ -95,8 +96,8 @@ object Native {
       loop(src.read(buffer))
     } finally {
       // If read/write fails, close streams safely before throwing an exception
-      src.close();
-      dst.close();
+      src.close()
+      dst.close()
     }
   }
 }

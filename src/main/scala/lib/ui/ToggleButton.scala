@@ -9,22 +9,26 @@ import org.newdawn.slick.state.{StateBasedGame}
 object ToggleButton {
   val width = Button.width
   val height = Button.height
+  val cornerRadius = Button.cornerRadius
 
-  def apply(text: String, x: Float, y: Float, action: ()=>Unit, query: () => Boolean)(implicit input: Input, state: Int, game: StateBasedGame) = {
-    val b = new ToggleButton(text, x, y, width, height, () => if (game.getCurrentStateID == state) action(), query)
+  def apply(text: String, x: Float, y: Float, action: () => Unit, query: () => Boolean)
+           (implicit input: Input, state: Int, game: StateBasedGame): ToggleButton = {
+    val act = () => if (game.getCurrentStateID == state) action()
+    val b = new ToggleButton(text, x, y, width, height, act, query)
     b.setInput(input)
     b
   }
 }
 
-class ToggleButton(text: String, x: Float, y: Float, width: Float, height: Float, action: () => Unit, state: () => Boolean)
- extends Button(text, x, y, width, height, action) {
+class ToggleButton(text: String, x: Float,y: Float, width: Float, height: Float,
+  action: () => Unit, state: () => Boolean)
+    extends Button(text, x, y, width, height, action) {
 
-  override def render(g: Graphics) = {
-    val textColor = 
+  override def render(g: Graphics): Unit = {
+    val textColor =
       if (state()) Color.red
       else Color.white
-    var bgColor = 
+    var bgColor =
       if (state()) Color.white
       else Color.darkGray
 
@@ -35,7 +39,7 @@ class ToggleButton(text: String, x: Float, y: Float, width: Float, height: Float
     }
 
     g.setColor(bgColor)
-    g.fillRoundRect(x, y, width, height, 5)
+    g.fillRoundRect(x, y, width, height, ToggleButton.cornerRadius)
     g.setColor(textColor)
     drawCentred(text, y, g)
   }

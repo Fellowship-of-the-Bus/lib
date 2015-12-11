@@ -13,8 +13,8 @@ object Scoreboard extends App {
 <head>
   <script src="/~rschlunt/js/sorttable.js"></script>
   <style>
-  table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
-    content: " \25B4\25BE" 
+  table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
   }
 
   table.sortable thead {
@@ -42,13 +42,14 @@ object Scoreboard extends App {
 </table>
 """.substring(1)
 
-  val baseSocket = ServerSocket(12345)
+  val port = 12345
+  val baseSocket = ServerSocket(port)
   val dataFile = new File("scoreboard.txt")
 
   var data = List[(String,Int)]()
   val maxLength = 100
 
-  def read() = {
+  def read(): Unit = {
     dataFile.createNewFile      // only creates if it doesn't exist
     val sc = new Scanner(dataFile)
     while (sc.hasNextLine) {
@@ -57,7 +58,7 @@ object Scoreboard extends App {
     }
   }
 
-  def write() = {
+  def write(): Unit = {
     val dataWriter = new PrintStream(dataFile)
     val tableWriter = new PrintStream(new File("scoreboard.html"))
 

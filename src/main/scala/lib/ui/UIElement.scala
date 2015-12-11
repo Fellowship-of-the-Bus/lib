@@ -28,10 +28,10 @@ trait UIElement {
   def draw(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit
 
   // default implementation do that init can call setInput
-  def setInput(input: Input) = ()
+  def setInput(input: Input): Unit = ()
 
   var uiState: Int = -1
-  def setState(st: Int) = {
+  def setState(st: Int): Unit = {
     uiState = st
   }
 
@@ -40,13 +40,12 @@ trait UIElement {
     visible = vis
     this
   }
-  def isVisible() = visible()
+  def isVisible(): Boolean = visible()
 
   protected def inside(newx: Int, newy: Int) =
     absoluteX < newx && newx < absoluteX+width && absoluteY < newy && newy < absoluteY+height
 }
 
-abstract class AbstractUIElement(val x: Float, val y: Float, val width: Float, val height: Float) extends UIElement {
-
-}
+abstract class AbstractUIElement(val x: Float, val y: Float, val width: Float, val height: Float)
+extends UIElement {}
 

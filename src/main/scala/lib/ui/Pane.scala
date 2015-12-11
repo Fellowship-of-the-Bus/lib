@@ -9,7 +9,10 @@ import org.newdawn.slick.state.{StateBasedGame}
 
 import game._
 
-class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) extends AbstractUIElement(x, y, width, height) {
+class Pane(x: Float, y: Float, width: Float, height: Float)
+          (implicit bg: Color)
+    extends AbstractUIElement(x, y, width, height) {
+
   // type Game <: AnyRef
   protected var game: Game = null
 
@@ -20,7 +23,7 @@ class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) 
     addChildren(newchildren)
   }
 
-  def addChildren(newchildren: List[UIElement]) = {
+  def addChildren(newchildren: List[UIElement]): Unit = {
     for (c <- newchildren) {
       c.absoluteX += absoluteX
       c.absoluteY += absoluteY
@@ -28,13 +31,13 @@ class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) 
     children = newchildren++children
   }
 
-  def update(gc: GameContainer, sbg: StateBasedGame, delta: Int) = {
+  def update(gc: GameContainer, sbg: StateBasedGame, delta: Int): Unit = {
     for (child <- children) {
       child.update(gc, sbg, delta)
-    }    
+    }
   }
 
-  def draw(gc: GameContainer, sbg: StateBasedGame, g: Graphics) = {
+  def draw(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit = {
     val linewidth = g.getLineWidth
     g.setLineWidth(3)
 
@@ -46,7 +49,7 @@ class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) 
     g.setLineWidth(linewidth)
   }
 
-  override def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics) = {
+  override def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit = {
     g.translate(x, y)
     draw(gc, sbg, g)
     for (child <- children; if (child.isVisible)) {
@@ -55,7 +58,7 @@ class Pane(x: Float, y: Float, width: Float, height: Float)(implicit bg: Color) 
     g.translate(-x, -y)
   }
 
-  override def init(gc: GameContainer, sbg: StateBasedGame) = {
+  override def init(gc: GameContainer, sbg: StateBasedGame): Unit = {
     super.init(gc, sbg)
     for (child <- children) {
       child.setState(uiState)

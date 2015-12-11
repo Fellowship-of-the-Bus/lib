@@ -11,15 +11,14 @@ object IP {
   private val lookupAddr = "http://checkip.amazonaws.com/"
 
   /** produce a LAN address of this machine */
-  def localIP() = {
+  def localIP(): InetAddress = {
     import scala.collection.Iterator
     import scala.collection.JavaConversions.enumerationAsScalaIterator
-    
+
     val nics: Iterator[NetworkInterface] = NetworkInterface.getNetworkInterfaces
     val addrs = for {
       nic <- nics.toList
-      if (nic.isUp)
-      if (! nic.isLoopback)
+      if (nic.isUp && ! nic.isLoopback)
       addr <- nic.getInetAddresses
       if (addr.isSiteLocalAddress)
     } yield addr
@@ -30,7 +29,7 @@ object IP {
   }
 
   /** produce the public IP address of this machine */
-  def publicIP() = {
+  def publicIP(): InetAddress = {
     val url = new URL(lookupAddr)
     val in = new BufferedReader(new InputStreamReader(url.openStream))
     val ip = in.readLine
@@ -59,14 +58,18 @@ case class ClientSocket(conn: JClientSocket) extends Socket {
   private lazy val in = new Scanner(conn.getInputStream)
 
   def send(s: String): Unit = out.println(s)
-  def receive() = if (in.hasNextLine) Some(in.nextLine) else None
-  def receiveNow() = in.nextLine
+  def receive(): Option[String] = if (in.hasNextLine) Some(in.nextLine) else None
+  def receiveNow(): String = in.nextLine
 
-  def connection() = conn.getRemoteSocketAddress
+  def connection(): SocketAddress = conn.getRemoteSocketAddress
+}
+
+object UDPSocket {
+  private val defaultBuffLen = 256
 }
 
 class UDPSocket(port: Int, buffLen: Int)  {
-  def this(port: Int) = this(port, 256)
+  def this(port: Int) = this(port, UDPSocket.defaultBuffLen)
 
   private val conn = {
     var channel = JUDPSocket.open()
@@ -75,7 +78,7 @@ class UDPSocket(port: Int, buffLen: Int)  {
     channel
   }
 
-  def send(s: String)(implicit addr: SocketAddress) = {
+  def send(s: String)(implicit addr: SocketAddress): Int = {
     val bytes = s.getBytes
     val buffer = ByteBuffer.wrap(bytes)
     conn.send(buffer, addr) // this?
@@ -86,7 +89,7 @@ class UDPSocket(port: Int, buffLen: Int)  {
     val buffer = ByteBuffer.allocate(buffLen)
     val sender = conn.receive(buffer)
     Option(sender).map(
-      new String(buffer.array, buffer.arrayOffset, 
+      new String(buffer.array, buffer.arrayOffset,
         buffer.position-buffer.arrayOffset) -> _)
   }
 
@@ -95,7 +98,7 @@ class UDPSocket(port: Int, buffLen: Int)  {
   //   // val msg = new String(buffer, packet.getOffset, packet.getLength)
   //   // val ipAddr = packet.getAddress()
   //   // val port = packet.getPort()
-  //   // Some((msg, ipAddr, port))    
+  //   // Some((msg, ipAddr, port))
   // }
 
   // def getIP() = conn.getInetAddress()
@@ -104,7 +107,7 @@ class UDPSocket(port: Int, buffLen: Int)  {
 // // UDP + connection
 // case class ConnectedSocket extends Socket {
 //   def send(s: String) = {
-    
+
 //   }
 
 //   def receive() = {

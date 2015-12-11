@@ -3,6 +3,10 @@ package game
 
 import org.newdawn.slick.Graphics
 
+object DefaultGameConfig {
+  val FrameRate = 60
+}
+
 /** Holds global game configuration. */
 object GameConfig {
   /** screen width */
@@ -11,7 +15,7 @@ object GameConfig {
   var Height = 0
 
   /** target frame rate */
-  var FrameRate = 60
+  var FrameRate = DefaultGameConfig.FrameRate
 
   /** true if life bars should be displayed */
   var showLifebars = true

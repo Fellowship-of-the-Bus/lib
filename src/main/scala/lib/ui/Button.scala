@@ -14,16 +14,22 @@ object Button {
   val width = 200
   /** height of a button */
   val height = 20
+  val cornerRadius = 5
+  val padding = 5
 
-  def apply(text: String, x: Float, y: Float, action: ()=>Unit)(implicit input: Input, state: Int, game: StateBasedGame) = {
-    val b = new Button(text, x, y, width, height, () => if (game.getCurrentStateID == state) action())
+
+  def apply(text: String, x: Float, y: Float, action: ()=>Unit)
+           (implicit input: Input, state: Int, game: StateBasedGame): Button = {
+    val act = () => if (game.getCurrentStateID == state) action()
+    val b = new Button(text, x, y, width, height, act)
     b.setInput(input)
     b
   }
 
 }
 
-class Button(text: String, val x: Float, val y: Float, val width: Float, val height: Float, act: () => Unit)
+class Button(text: String, val x: Float, val y: Float, val width: Float, val height: Float,
+  act: () => Unit)
  extends InputAdapter with UIElement {
   object ButtonMode {
     val NORMAL = 0
@@ -33,9 +39,9 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
   import ButtonMode._
 
   def this(text: String, x: Float, y: Float, act: () => Unit) =
-    this(text, x, y, 
-      GameConfig.graphics.getFont.getWidth(text) + 5,
-      GameConfig.graphics.getFont.getHeight(text) + 5,
+    this(text, x, y,
+      GameConfig.graphics.getFont.getWidth(text) + Button.padding,
+      GameConfig.graphics.getFont.getHeight(text) + Button.padding,
       act)
 
 
@@ -47,16 +53,16 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
     this
   }
 
-  def setAction(act: () => Unit) = {
+  def setAction(act: () => Unit): Unit = {
     action = () => if (sbg.getCurrentStateID == uiState) act()
   }
 
   private var mode = NORMAL
 
-  def isMouseOver() = mode == MOUSE_OVER
-  def isMouseDown() = mode == MOUSE_DOWN
+  def isMouseOver(): Boolean = mode == MOUSE_OVER
+  def isMouseDown(): Boolean = mode == MOUSE_DOWN
 
-  override def setInput(input: Input) = {
+  override def setInput(input: Input): Unit = {
     input.addMouseListener(this)
   }
 
@@ -109,12 +115,12 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
     }
 
     g.setColor(bgColor)
-    g.fillRoundRect(0, 0, width, height, 5)
+    g.fillRoundRect(0, 0, width, height, Button.cornerRadius)
     g.setColor(textColor)
 
     val xc = width/2-g.getFont.getWidth(text)/2
     val yc = height/2-g.getFont.getHeight(text)/2
-    
+
     g.drawString(text, xc, yc)
 
     g.translate(-x, -y)
@@ -127,30 +133,31 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
   def update(gc: GameContainer, sbg: StateBasedGame, delta: Int): Unit = ()
   override def render(gc: GameContainer, sbg: StateBasedGame, g: Graphics): Unit = render(g)
 
-  override def init(gc: GameContainer, sbg: StateBasedGame) = {
+  override def init(gc: GameContainer, sbg: StateBasedGame): Unit = {
     super.init(gc, sbg)
-    if (action == null) setAction(act)
+    setAction(act)  // TODO: this feels like a mistake
   }
 
-  override def setState(s: Int) = {
+  override def setState(s: Int): Unit = {
     super.setState(s)
   }
 }
 
-class ImageButton(private var image: Drawable, x: Float, y: Float, width: Float, height: Float, act: () => Unit) 
+class ImageButton(private var image: Drawable, x: Float, y: Float, width: Float, height: Float,
+  act: () => Unit)
 extends Button("", x, y, width, height, act) {
-  def setImage(im: Drawable) = {
+  def setImage(im: Drawable): Unit = {
     image = im
   }
 
-  var mouseDownColor = (0.3f, 0.3f, 0.3f)
-  var mouseOverColor = (0.5f, 0.5f, 0.5f)
-  var notSelectableColor = (0.2f, 0.2f, 0.2f)
+  var mouseDownColor: (Float, Float, Float) = (0.3f, 0.3f, 0.3f)
+  var mouseOverColor: (Float, Float, Float) = (0.5f, 0.5f, 0.5f)
+  var notSelectableColor: (Float, Float, Float) = (0.2f, 0.2f, 0.2f)
 
   override def render(g: Graphics): Unit = {
     g.translate(x, y)
 
-    var (red, green, blue) = 
+    var (red, green, blue) =
       if (selectable()) {
         if (isMouseOver){
           mouseOverColor

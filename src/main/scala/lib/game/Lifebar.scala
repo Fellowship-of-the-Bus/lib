@@ -4,11 +4,11 @@ package game
 import org.newdawn.slick.{Graphics, Color}
 
 object Lifebar {
-  /** width of a lifebar */ 
+  /** width of a lifebar */
   val width = 40
-  /** height of a lifebar */ 
+  /** height of a lifebar */
   val height = 5
-  /** vertical distance between a lifebar and the top left corner of the image */ 
+  /** vertical distance between a lifebar and the top left corner of the image */
   val dist = 10
 }
 
@@ -18,7 +18,7 @@ trait Lifebar {
 
   def topLeftCoord(): (Float, Float)
 
-  def draw(g: Graphics, x: Float, y: Float) =
+  def draw(g: Graphics, x: Float, y: Float): Unit =
     if (GameConfig.showLifebars && hp < maxHp) {
       import Lifebar._
 
