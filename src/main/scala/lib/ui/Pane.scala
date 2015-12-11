@@ -16,7 +16,7 @@ class Pane(x: Float, y: Float, width: Float, height: Float)
   // type Game <: AnyRef
   protected var game: Game = null
 
-  var children: List[UIElement] = List()
+  private var children: List[UIElement] = List()
 
   def addChildren(child: UIElement, childs: UIElement*): Unit = {
     val newchildren = child::childs.toList
