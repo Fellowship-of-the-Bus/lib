@@ -9,6 +9,11 @@ libraryDependencies += "junit" % "junit" % "4.12" % "test"
 
 libraryDependencies += "org.slick2d" % "slick2d-core" % "1.0.1"
 
+// allow others to link against our scaladoc
+apiURL := Some(url("https://fellowship-of-the-bus.github.io/lib/latest/api/"))
+
+autoAPIMappings := true  // our scaladoc should link against our dependencies
+
 site.settings
 
 site.includeScaladoc()
