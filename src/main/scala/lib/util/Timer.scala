@@ -9,40 +9,32 @@ import math.min
 trait TimerManager {
   private[util] var timers = Vector[Timer]()
 
-  /**
-   * Registers a timer event with this TimerListener.
-   */
-  def addTimer(timer: Timer): Unit = {
+  /** Registers a timer event with this TimerListener. */
+  @deprecated("Use TimerManager.add instead", "0.3")
+  def addTimer(timer: Timer): Unit = add(timer)
+
+  /** Registers a timer event with this TimerListener. */
+  def add(timer: Timer): Unit = {
     timers = timers :+ timer
   }
 
-  /**
-   * ticks all registered timers
-   */
+  /** ticks all registered timers */
   def tick(delta: Long): Unit
 
-  /**
-   * ticks all registered timers
-   * @deprecated
-   */
+  /** ticks all registered timers */
+  @deprecated("Use TimerManager.tick instead", "0.3")
   def update(delta: Long): Unit = tick(delta)
 
-  /**
-   * Unregister all timer events
-   */
+  /** Unregister all timer events */
   def cancelAll(): Unit = timers = Vector[Timer]()
 
-  /**
-   * Returns true if there are active timer events
-   */
+  /** Returns true if there are active timer events */
   def ticking(): Boolean = timers.exists(_.canFire)
 }
 
 trait TimerListener extends TimerManager {
-  /**
-   * ticks all registered timers and causes them to
-   * fire if they become ready
-   */
+  /** ticks all registered timers and causes them to
+    * fire if they become ready */
   def tick(delta: Long): Unit = {
     for (timer <- timers) {
       timer.tick(delta)
@@ -123,9 +115,7 @@ abstract class Timer(timeTillAction: Long, protected val action: () => Unit,
   }
 }
 
-/**
- * Timer which requires n calls to tick before it can fire
- */
+/** Timer which requires n calls to tick before it can fire */
 class TickTimer(timeTillAction: Long, action: () => Unit, frequency: TimerFrequency = FireOnce)
 extends Timer(timeTillAction, action, frequency) {
   /** ignores delta and always ticks 1 */
@@ -134,9 +124,7 @@ extends Timer(timeTillAction, action, frequency) {
   }
 }
 
-/**
- * Timer which ticks by the received amount every time
- */
+/** Timer which ticks by the received amount every time */
 class MSTimer(timeTillAction: Long, action: () => Unit, frequency: TimerFrequency = FireOnce)
 extends Timer(timeTillAction, action, frequency)
 
@@ -147,18 +135,14 @@ trait ConditionalTimer extends Timer {
   override def ready(): Boolean = super.ready() && query()
 }
 
-/**
- * Timer which requires n calls to tick before it can fire and waits
- * to perform its action until its query function returns true
- */
+/** Timer which requires n calls to tick before it can fire and waits
+  * to perform its action until its query function returns true */
 class ConditionalTickTimer(timeTillAction: Long, action: () => Unit,
     protected val query: () => Boolean, frequency: TimerFrequency = FireOnce)
 extends TickTimer(timeTillAction, action, frequency) with ConditionalTimer
 
-/**
- * Timer which ticks by the received amount every time
- * and waits to perform its action until its query function returns true
- */
+/** Timer which ticks by the received amount every time
+  * and waits to perform its action until its query function returns true */
 class ConditionalMSTimer(timeTillAction: Long, action: () => Unit,
     protected val query: () => Boolean, frequency: TimerFrequency = FireOnce)
 extends MSTimer(timeTillAction, action, frequency) with ConditionalTimer
