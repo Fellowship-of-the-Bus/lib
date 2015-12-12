@@ -112,8 +112,7 @@
         <img src="../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">ticks all registered timers
-</p>
+      <p class="shortcomment cmt">ticks all registered timers</p>
     </li></ol>
             </div>
 
@@ -170,19 +169,19 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.TimerManager#addTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="addTimer(timer:com.github.fellowship_of_the_bus.lib.util.Timer):Unit"></a>
-      <a id="addTimer(Timer):Unit"></a>
+    </li><li name="com.github.fellowship_of_the_bus.lib.util.TimerManager#add" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="add(timer:com.github.fellowship_of_the_bus.lib.util.Timer):Unit"></a>
+      <a id="add(Timer):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">addTimer</span><span class="params">(<span name="timer">timer: <a href="Timer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.Timer">Timer</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">add</span><span class="params">(<span name="timer">timer: <a href="Timer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.Timer">Timer</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.TimerManager@addTimer(timer:com.github.fellowship_of_the_bus.lib.util.Timer):Unit" title="Permalink" target="_top">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.TimerManager@add(timer:com.github.fellowship_of_the_bus.lib.util.Timer):Unit" title="Permalink" target="_top">
         <img src="../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -220,8 +219,7 @@
         <img src="../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Unregister all timer events
-</p>
+      <p class="shortcomment cmt">Unregister all timer events</p>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -437,8 +435,7 @@
         <img src="../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Returns true if there are active timer events
-</p>
+      <p class="shortcomment cmt">Returns true if there are active timer events</p>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>
@@ -532,7 +529,27 @@
 
         <div id="values" class="values members">
               <h3>Deprecated Value Members</h3>
-              <ol><li name="com.github.fellowship_of_the_bus.lib.util.TimerManager#update" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+              <ol><li name="com.github.fellowship_of_the_bus.lib.util.TimerManager#addTimer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addTimer(timer:com.github.fellowship_of_the_bus.lib.util.Timer):Unit"></a>
+      <a id="addTimer(Timer):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version 0.3) Use TimerManager.add instead">addTimer</span><span class="params">(<span name="timer">timer: <a href="Timer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.Timer">Timer</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.TimerManager@addTimer(timer:com.github.fellowship_of_the_bus.lib.util.Timer):Unit" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Registers a timer event with this TimerListener.</p><div class="fullcomment"><div class="comment cmt"><p>Registers a timer event with this TimerListener.</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.3)</i> Use TimerManager.add instead</p></dd></dl></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.util.TimerManager#update" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="update(delta:Long):Unit"></a>
       <a id="update(Long):Unit"></a>
       <h4 class="signature">
@@ -541,14 +558,17 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name deprecated" title="Deprecated: ">update</span><span class="params">(<span name="delta">delta: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name deprecated" title="Deprecated: (Since version 0.3) Use TimerManager.tick instead">update</span><span class="params">(<span name="delta">delta: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.TimerManager@update(delta:Long):Unit" title="Permalink" target="_top">
         <img src="../../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">ticks all registered timers</p><div class="fullcomment"><div class="comment cmt"><p>ticks all registered timers</p></div><dl class="attributes block"> <dt>Deprecated</dt><dd class="cmt"></dd></dl></div>
+      <p class="shortcomment cmt">ticks all registered timers</p><div class="fullcomment"><div class="comment cmt"><p>ticks all registered timers</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version 0.3)</i> Use TimerManager.tick instead</p></dd></dl></div>
     </li></ol>
             </div>
         </div>
