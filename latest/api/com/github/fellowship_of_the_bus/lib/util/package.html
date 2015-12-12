@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html >
 <html>
         <head>
           <title>util - com.github.fellowship_of_the_bus.lib.util</title>
@@ -9,6 +8,11 @@
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../../index.html';
@@ -24,9 +28,13 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../../../lib/package_big.png" />
+        <img alt="Package" src="../../../../../lib/package_big.png" />
         <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.github">github</a>.<a href="../../package.html" class="extype" name="com.github.fellowship_of_the_bus">fellowship_of_the_bus</a>.<a href="../package.html" class="extype" name="com.github.fellowship_of_the_bus.lib">lib</a></p>
-        <h1>util</h1>
+        <h1>util</h1><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
@@ -67,7 +75,6 @@
               <li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li>
             </ol>
-            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
           </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -92,8 +99,12 @@
       <span class="symbol">
         <a href="ConditionalMSTimer.html"><span class="name">ConditionalMSTimer</span></a><span class="result"> extends <a href="MSTimer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.MSTimer">MSTimer</a> with <a href="ConditionalTimer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.ConditionalTimer">ConditionalTimer</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Timer which ticks by the received amount every time
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@ConditionalMSTimerextendsMSTimerwithConditionalTimer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Timer which ticks by the received amount every time
 and waits to perform its action until its query function returns true</p>
     </li><li name="com.github.fellowship_of_the_bus.lib.util.ConditionalTickTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ConditionalTickTimerextendsTickTimerwithConditionalTimer"></a>
@@ -106,8 +117,12 @@ and waits to perform its action until its query function returns true</p>
       <span class="symbol">
         <a href="ConditionalTickTimer.html"><span class="name">ConditionalTickTimer</span></a><span class="result"> extends <a href="TickTimer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TickTimer">TickTimer</a> with <a href="ConditionalTimer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.ConditionalTimer">ConditionalTimer</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Timer which requires n calls to tick before it can fire and waits
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@ConditionalTickTimerextendsTickTimerwithConditionalTimer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Timer which requires n calls to tick before it can fire and waits
 to perform its action until its query function returns true</p>
     </li><li name="com.github.fellowship_of_the_bus.lib.util.ConditionalTimer" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="ConditionalTimerextendsTimer"></a>
@@ -120,7 +135,11 @@ to perform its action until its query function returns true</p>
       <span class="symbol">
         <a href="ConditionalTimer.html"><span class="name">ConditionalTimer</span></a><span class="result"> extends <a href="Timer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.Timer">Timer</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@ConditionalTimerextendsTimer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="com.github.fellowship_of_the_bus.lib.util.FireN" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="FireNextendsTimerFrequencywithProductwithSerializable"></a>
@@ -131,9 +150,13 @@ to perform its action until its query function returns true</p>
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="FireN.html"><span class="name">FireN</span></a><span class="params">(<span name="n">n: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="FireN.html"><span class="name">FireN</span></a><span class="params">(<span name="n">n: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Long" class="extype" target="_top">Long</a></span>)</span><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@FireNextendsTimerFrequencywithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="com.github.fellowship_of_the_bus.lib.util.MSTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="MSTimerextendsTimer"></a>
@@ -146,9 +169,13 @@ to perform its action until its query function returns true</p>
       <span class="symbol">
         <a href="MSTimer.html"><span class="name">MSTimer</span></a><span class="result"> extends <a href="Timer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.Timer">Timer</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Timer which ticks by the received amount every time</p>
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.ManualTimerManager" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@MSTimerextendsTimer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Timer which ticks by the received amount every time</p>
+    </li><li name="com.github.fellowship_of_the_bus.lib.util.ManualTimerManager" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="ManualTimerManagerextendsTimerManager"></a>
       <a id="ManualTimerManager:ManualTimerManager"></a>
       <h4 class="signature">
@@ -159,9 +186,16 @@ to perform its action until its query function returns true</p>
       <span class="symbol">
         <a href="ManualTimerManager.html"><span class="name">ManualTimerManager</span></a><span class="result"> extends <a href="TimerManager.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerManager">TimerManager</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">A TimerManager that does not automatically call
-fire on ready timers.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@ManualTimerManagerextendsTimerManager" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A TimerManager that does not automatically call
+fire on ready timers.</p><div class="fullcomment"><div class="comment cmt"><p>A TimerManager that does not automatically call
+fire on ready timers. To fire the ready timers,
+the user should call fire on the ManualTimerManager
+object.</p></div></div>
     </li><li name="com.github.fellowship_of_the_bus.lib.util.TickTimer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TickTimerextendsTimer"></a>
       <a id="TickTimer:TickTimer"></a>
@@ -173,8 +207,12 @@ fire on ready timers.</p>
       <span class="symbol">
         <a href="TickTimer.html"><span class="name">TickTimer</span></a><span class="result"> extends <a href="Timer.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.Timer">Timer</a></span>
       </span>
-      </h4>
-      <p class="comment cmt">Timer which requires n calls to tick before it can fire</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@TickTimerextendsTimer" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Timer which requires n calls to tick before it can fire</p>
     </li><li name="com.github.fellowship_of_the_bus.lib.util.Timer" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="TimerextendsAnyRef"></a>
       <a id="Timer:Timer"></a>
@@ -186,7 +224,11 @@ fire on ready timers.</p>
       <span class="symbol">
         <a href="Timer.html"><span class="name">Timer</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@TimerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="TimerFrequencyextendsAnyRef"></a>
@@ -199,7 +241,11 @@ fire on ready timers.</p>
       <span class="symbol">
         <a href="TimerFrequency.html"><span class="name">TimerFrequency</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@TimerFrequencyextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="com.github.fellowship_of_the_bus.lib.util.TimerListener" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="TimerListenerextendsTimerManager"></a>
@@ -212,7 +258,11 @@ fire on ready timers.</p>
       <span class="symbol">
         <a href="TimerListener.html"><span class="name">TimerListener</span></a><span class="result"> extends <a href="TimerManager.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerManager">TimerManager</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@TimerListenerextendsTimerManager" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="com.github.fellowship_of_the_bus.lib.util.TimerManager" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="TimerManagerextendsAnyRef"></a>
@@ -225,8 +275,12 @@ fire on ready timers.</p>
       <span class="symbol">
         <a href="TimerManager.html"><span class="name">TimerManager</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
-      </h4>
-      <p class="comment cmt">TimerManagers can register Timer events
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@TimerManagerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">TimerManagers can register Timer events
 </p>
     </li></ol>
             </div>
@@ -244,9 +298,13 @@ fire on ready timers.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="Finished$.html"><span class="name">Finished</span></a><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="Finished$.html"><span class="name">Finished</span></a><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@Finished" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li><li name="com.github.fellowship_of_the_bus.lib.util.FireOnce" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="FireOnce"></a>
@@ -257,11 +315,15 @@ fire on ready timers.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="FireOnce$.html"><span class="name">FireOnce</span></a><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="FireOnce$.html"><span class="name">FireOnce</span></a><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@FireOnce" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.Native" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.github.fellowship_of_the_bus.lib.util.Native" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Native"></a>
       <a id="Native:Native"></a>
       <h4 class="signature">
@@ -272,8 +334,12 @@ fire on ready timers.</p>
       <span class="symbol">
         <a href="Native$.html"><span class="name">Native</span></a>
       </span>
-      </h4>
-      <p class="comment cmt">Adaptation of cz.</p>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@Native" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Adaptation of cz.adamh.utils.NativeUtils by Adam Heinrich</p><div class="fullcomment"><div class="comment cmt"><p>Adaptation of cz.adamh.utils.NativeUtils by Adam Heinrich</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>http://adamheinrich.com/blog/2012/how-to-load-native-jni-library-from-jar/</p></span></dd></dl></div>
     </li><li name="com.github.fellowship_of_the_bus.lib.util.RepeatForever" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RepeatForever"></a>
       <a id="RepeatForever:RepeatForever"></a>
@@ -283,11 +349,15 @@ fire on ready timers.</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="RepeatForever$.html"><span class="name">RepeatForever</span></a><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+        <a href="RepeatForever$.html"><span class="name">RepeatForever</span></a><span class="result"> extends <a href="TimerFrequency.html" class="extype" name="com.github.fellowship_of_the_bus.lib.util.TimerFrequency">TimerFrequency</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@RepeatForever" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.package#openFileAsStream" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.github.fellowship_of_the_bus.lib.util#openFileAsStream" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="openFileAsStream(filename:String):java.io.InputStream"></a>
       <a id="openFileAsStream(String):InputStream"></a>
       <h4 class="signature">
@@ -298,9 +368,13 @@ fire on ready timers.</p>
       <span class="symbol">
         <span class="name">openFileAsStream</span><span class="params">(<span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.io.InputStream">InputStream</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@openFileAsStream(filename:String):java.io.InputStream" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.package#rand" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.github.fellowship_of_the_bus.lib.util#rand" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="rand(lower:Int,upper:Int):Int"></a>
       <a id="rand(Int,Int):Int"></a>
       <h4 class="signature">
@@ -309,11 +383,15 @@ fire on ready timers.</p>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rand</span><span class="params">(<span name="lower">lower: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="upper">upper: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span class="name">rand</span><span class="params">(<span name="lower">lower: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>, <span name="upper">upper: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@rand(lower:Int,upper:Int):Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">random number in range [lower, upper]</p>
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.package#rand" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.github.fellowship_of_the_bus.lib.util#rand" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="rand(i:Int):Int"></a>
       <a id="rand(Int):Int"></a>
       <h4 class="signature">
@@ -322,11 +400,15 @@ fire on ready timers.</p>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">rand</span><span class="params">(<span name="i">i: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Int" class="extype" target="_top">Int</a></span>
+        <span class="name">rand</span><span class="params">(<span name="i">i: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@rand(i:Int):Int" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       <p class="shortcomment cmt">random number in range [0, i)</p>
-    </li><li name="com.github.fellowship_of_the_bus.lib.util.package#scanFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="com.github.fellowship_of_the_bus.lib.util#scanFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="scanFile(filename:String):java.util.Scanner"></a>
       <a id="scanFile(String):Scanner"></a>
       <h4 class="signature">
@@ -337,7 +419,11 @@ fire on ready timers.</p>
       <span class="symbol">
         <span class="name">scanFile</span><span class="params">(<span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.Scanner">Scanner</span></span>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.util.package@scanFile(filename:String):java.util.Scanner" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
     </li></ol>
             </div>
@@ -368,6 +454,7 @@ fire on ready timers.</p>
       <div id="tooltip"></div>
 
       <div id="footer">  </div>
-      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+
+
     </body>
       </html>
