@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>DefaultGameConfig - com.github.fellowship_of_the_bus.lib.game.DefaultGameConfig</title>
-          <meta name="description" content="DefaultGameConfig - com.github.fellowship of the bus.lib.game.DefaultGameConfig" />
-          <meta name="keywords" content="DefaultGameConfig com.github.fellowship of the bus.lib.game.DefaultGameConfig" />
+          <title>ConnectedSocket - com.github.fellowship_of_the_bus.lib.net.ConnectedSocket</title>
+          <meta name="description" content="ConnectedSocket - com.github.fellowship of the bus.lib.net.ConnectedSocket" />
+          <meta name="keywords" content="ConnectedSocket com.github.fellowship of the bus.lib.net.ConnectedSocket" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../../index.html';
-            var hash = 'com.github.fellowship_of_the_bus.lib.game.DefaultGameConfig$';
+            var hash = 'com.github.fellowship_of_the_bus.lib.net.ConnectedSocket';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -22,26 +22,26 @@
    	  </script>
     
         </head>
-        <body class="value">
+        <body class="type">
       <div id="definition">
-        <img src="../../../../../lib/object_big.png" />
-        <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.github">github</a>.<a href="../../package.html" class="extype" name="com.github.fellowship_of_the_bus">fellowship_of_the_bus</a>.<a href="../package.html" class="extype" name="com.github.fellowship_of_the_bus.lib">lib</a>.<a href="package.html" class="extype" name="com.github.fellowship_of_the_bus.lib.game">game</a></p>
-        <h1>DefaultGameConfig</h1>
+        <img src="../../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.github">github</a>.<a href="../../package.html" class="extype" name="com.github.fellowship_of_the_bus">fellowship_of_the_bus</a>.<a href="../package.html" class="extype" name="com.github.fellowship_of_the_bus.lib">lib</a>.<a href="package.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net">net</a></p>
+        <h1>ConnectedSocket</h1>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">object</span>
+        <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">DefaultGameConfig</span>
+        <span class="name">ConnectedSocket</span><span class="result"> extends <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a>, <span class="extype" name="java.io.Closeable">Closeable</span>, <span class="extype" name="java.lang.AutoCloseable">AutoCloseable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -59,7 +59,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="com.github.fellowship_of_the_bus.lib.game.DefaultGameConfig"><span>DefaultGameConfig</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket"><span>ConnectedSocket</span></li><li class="in" name="com.github.fellowship_of_the_bus.lib.net.Socket"><span>Socket</span></li><li class="in" name="java.io.Closeable"><span>Closeable</span></li><li class="in" name="java.lang.AutoCloseable"><span>AutoCloseable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -77,7 +77,23 @@
 
       <div id="template">
         <div id="allMembers">
-        
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket#&lt;init&gt;" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(addr:java.net.SocketAddress,conn:com.github.fellowship_of_the_bus.lib.net.UDPSocket):com.github.fellowship_of_the_bus.lib.net.ConnectedSocket"></a>
+      <a id="&lt;init&gt;:ConnectedSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ConnectedSocket</span><span class="params">(<span name="addr">addr: <span class="extype" name="java.net.SocketAddress">SocketAddress</span></span>, <span name="conn">conn: <a href="UDPSocket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.UDPSocket">UDPSocket</a></span>)</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="package.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net">com.github.fellowship_of_the_bus.lib.net</a>] </dd></dl></div>
+    </li></ol>
+            </div>
 
         
 
@@ -150,19 +166,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="com.github.fellowship_of_the_bus.lib.game.DefaultGameConfig#FrameRate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="FrameRate:Int"></a>
-      <a id="FrameRate:Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">FrameRate</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Int" class="extype" target="_top">Int</a></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -195,6 +198,32 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.Socket#close" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="close():Unit"></a>
+      <a id="close():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">close</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a> → Closeable → AutoCloseable</dd></dl></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket#conn" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="conn:com.github.fellowship_of_the_bus.lib.net.UDPSocket"></a>
+      <a id="conn:UDPSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">conn</span><span class="result">: <a href="UDPSocket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.UDPSocket">UDPSocket</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket">ConnectedSocket</a> → <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -318,6 +347,45 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket#receive" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receive():Option[String]"></a>
+      <a id="receive():Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">receive</span><span class="params">()</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Option" class="extype" target="_top">Option</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket">ConnectedSocket</a> → <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></dd></dl></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket#receiveNow" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="receiveNow():String"></a>
+      <a id="receiveNow():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">receiveNow</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket">ConnectedSocket</a> → <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></dd></dl></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket#send" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="send(s:String):Unit"></a>
+      <a id="send(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">send</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.4/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket">ConnectedSocket</a> → <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -410,7 +478,13 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="com.github.fellowship_of_the_bus.lib.net.Socket">
+              <h3>Inherited from <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></h3>
+            </div><div class="parent" name="java.io.Closeable">
+              <h3>Inherited from <span class="extype" name="java.io.Closeable">Closeable</span></h3>
+            </div><div class="parent" name="java.lang.AutoCloseable">
+              <h3>Inherited from <span class="extype" name="java.lang.AutoCloseable">AutoCloseable</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
