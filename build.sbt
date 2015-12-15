@@ -40,6 +40,7 @@ publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
 
+// TODO: make a new task that compiles, tests, pushes to ghpages, then publishes
 GhPagesKeys.pushSite <<= GhPagesKeys.pushSite.dependsOn(compile in Compile)
 
 PgpKeys.publishSigned <<= PgpKeys.publishSigned.dependsOn(GhPagesKeys.pushSite)
