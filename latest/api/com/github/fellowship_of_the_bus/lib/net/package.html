@@ -1,0 +1,223 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>net - com.github.fellowship_of_the_bus.lib.net</title>
+          <meta name="description" content="net - com.github.fellowship of the bus.lib.net" />
+          <meta name="keywords" content="net com.github.fellowship of the bus.lib.net" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'com.github.fellowship_of_the_bus.lib.net.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.github">github</a>.<a href="../../package.html" class="extype" name="com.github.fellowship_of_the_bus">fellowship_of_the_bus</a>.<a href="../package.html" class="extype" name="com.github.fellowship_of_the_bus.lib">lib</a></p>
+        <h1>net</h1><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">net</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.github.fellowship_of_the_bus.lib.net.ClientSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ClientSocketextendsSocketwithProductwithSerializable"></a>
+      <a id="ClientSocket:ClientSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ClientSocket.html"><span class="name">ClientSocket</span></a><span class="params">(<span name="conn">conn: <span class="extype" name="java.net.Socket">java.net.Socket</span></span>)</span><span class="result"> extends <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@ClientSocketextendsSocketwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.ConnectedSocket" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ConnectedSocketextendsSocket"></a>
+      <a id="ConnectedSocket:ConnectedSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ConnectedSocket.html"><span class="name">ConnectedSocket</span></a><span class="result"> extends <a href="Socket.html" class="extype" name="com.github.fellowship_of_the_bus.lib.net.Socket">Socket</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@ConnectedSocketextendsSocket" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">UDP + connection.</p><div class="fullcomment"><div class="comment cmt"><p>UDP + connection. Create using UDPSocket.connect</p></div></div>
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.ServerSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ServerSocketextendsProductwithSerializable"></a>
+      <a id="ServerSocket:ServerSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ServerSocket.html"><span class="name">ServerSocket</span></a><span class="params">(<span name="port">port: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@ServerSocketextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.Socket" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SocketextendsCloseable"></a>
+      <a id="Socket:Socket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Socket.html"><span class="name">Socket</span></a><span class="result"> extends <span class="extype" name="java.io.Closeable">Closeable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@SocketextendsCloseable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.UDPSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UDPSocketextendsCloseable"></a>
+      <a id="UDPSocket:UDPSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="UDPSocket.html"><span class="name">UDPSocket</span></a><span class="result"> extends <span class="extype" name="java.io.Closeable">Closeable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@UDPSocketextendsCloseable" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.github.fellowship_of_the_bus.lib.net.IP" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IP"></a>
+      <a id="IP:IP"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="IP$.html"><span class="name">IP</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@IP" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="com.github.fellowship_of_the_bus.lib.net.UDPSocket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UDPSocket"></a>
+      <a id="UDPSocket:UDPSocket"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="UDPSocket$.html"><span class="name">UDPSocket</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../../index.html#com.github.fellowship_of_the_bus.lib.net.package@UDPSocket" title="Permalink" target="_top">
+        <img src="../../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
