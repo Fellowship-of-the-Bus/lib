@@ -80,7 +80,7 @@ object UDPSocket {
 
 class UDPSocket(port: Int, buffLen: Int) extends java.io.Closeable {
   private val conn = {
-    var channel = JUDPSocket.open()
+    val channel = JUDPSocket.open()
     channel.socket().bind(new InetSocketAddress(port))
     channel.configureBlocking(false)
     channel

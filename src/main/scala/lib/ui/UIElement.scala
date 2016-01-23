@@ -1,8 +1,8 @@
 package com.github.fellowship_of_the_bus
 package lib.ui
 
-import org.newdawn.slick.{GameContainer, Graphics, Color, Input}
-import org.newdawn.slick.state.{BasicGameState, StateBasedGame}
+import org.newdawn.slick.{GameContainer, Graphics, Input}
+import org.newdawn.slick.state.{StateBasedGame}
 
 trait UIElement {
   def x: Float

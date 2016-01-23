@@ -150,14 +150,14 @@ extends Button("", x, y, width, height, act) {
     image = im
   }
 
-  private var mouseDownColor: (Float, Float, Float) = (0.3f, 0.3f, 0.3f)
-  private var mouseOverColor: (Float, Float, Float) = (0.5f, 0.5f, 0.5f)
-  private var notSelectableColor: (Float, Float, Float) = (0.2f, 0.2f, 0.2f)
+  private val mouseDownColor: (Float, Float, Float) = (0.3f, 0.3f, 0.3f)
+  private val mouseOverColor: (Float, Float, Float) = (0.5f, 0.5f, 0.5f)
+  private val notSelectableColor: (Float, Float, Float) = (0.2f, 0.2f, 0.2f)
 
   override def render(g: Graphics): Unit = {
     g.translate(x, y)
 
-    var (red, green, blue) =
+    val (red, green, blue) =
       if (selectable()) {
         if (isMouseOver){
           mouseOverColor

@@ -2,8 +2,6 @@ package com.github.fellowship_of_the_bus
 package lib.ui
 
 import org.newdawn.slick.{Graphics, Color, Input}
-import org.newdawn.slick.util.InputAdapter
-import org.newdawn.slick.gui.MouseOverArea
 import org.newdawn.slick.state.{StateBasedGame}
 
 object ToggleButton {

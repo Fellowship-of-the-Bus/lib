@@ -2,8 +2,6 @@ package com.github.fellowship_of_the_bus
 package lib
 package ui
 
-import lib.ui._
-
 import org.newdawn.slick.{GameContainer, Graphics, Color}
 import org.newdawn.slick.state.{StateBasedGame}
 

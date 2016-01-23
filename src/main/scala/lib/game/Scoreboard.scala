@@ -66,8 +66,7 @@ object Scoreboard extends App {
 
     var i = 1
     for {
-      x <- data
-      (name, score) = x
+      (name, score) <- data
     } {
       dataWriter.println(s"$name $score")
       tableWriter.println(s"    <tr><td>$i</td><td>$name</td><td>$score</td></tr>")

@@ -7,8 +7,6 @@ import lib.game.GameConfig.{Width,Height}
 import org.newdawn.slick.{GameContainer, Graphics, Color}
 import org.newdawn.slick.state.{StateBasedGame}
 
-import game._
-
 class TextBox(x: Float, y: Float, width: Float, height: Float, query: () => String)
              (implicit bg: Color)
     extends Pane(x, y, width, height) {
