@@ -5,7 +5,7 @@ import org.newdawn.slick.GameContainer
 import org.newdawn.slick.state.{StateBasedGame}
 
 trait Game {
-  protected var isGameOver: Boolean = false
+  var isGameOver: Boolean = false
 
   def update(gc: GameContainer, game: StateBasedGame, delta: Int): Unit
 

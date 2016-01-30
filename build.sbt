@@ -25,10 +25,10 @@ lazy val commonSettings = Seq(
     "-Ywarn-unused"
   ),
   libraryDependencies ++= Seq(
-    "org.scalatest" %% "scalatest" % "2.2.5" % "test",
+    "org.scalatest" %% "scalatest" % "2.2.6" % "test",
     "junit" % "junit" % "4.12" % "test",
     "org.slick2d" % "slick2d-core" % "1.0.1",
-    "com.propensive" %% "rapture-json-jackson" % "2.0.0-M2"
+    "com.propensive" %% "rapture-json-jackson" % "2.0.0-M3"
   ),
   resolvers ++= Seq(
     "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
