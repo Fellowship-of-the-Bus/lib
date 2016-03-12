@@ -6,7 +6,7 @@ lazy val commonSettings = Seq(
   name := "fellowship-of-the-bus-lib",
   version := "0.3-SNAPSHOT",
   organization := "com.github.fellowship_of_the_bus",
-  scalaVersion := "2.11.7",
+  scalaVersion := "2.11.8",
   crossScalaVersions := Seq("2.10.6", "2.11.7"),
   crossVersion := CrossVersion.binary,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint"),
@@ -25,10 +25,10 @@ lazy val commonSettings = Seq(
     "-Ywarn-unused"
   ),
   libraryDependencies ++= Seq(
-    "org.scalatest" %% "scalatest" % "2.2.5" % "test",
+    "org.scalatest" %% "scalatest" % "2.2.6" % "test",
     "junit" % "junit" % "4.12" % "test",
     "org.slick2d" % "slick2d-core" % "1.0.1",
-    "com.propensive" %% "rapture-json-jackson" % "2.0.0-M2"
+    "com.propensive" %% "rapture-json-jackson" % "2.0.0-M5"
   ),
   resolvers ++= Seq(
     "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
