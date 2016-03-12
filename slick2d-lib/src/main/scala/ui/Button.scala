@@ -1,5 +1,6 @@
 package com.github.fellowship_of_the_bus
 package lib
+package slick2d
 package ui
 
 import org.newdawn.slick.{GameContainer, Graphics, Color, Input}
@@ -7,7 +8,7 @@ import org.newdawn.slick.util.InputAdapter
 import org.newdawn.slick.gui.MouseOverArea
 import org.newdawn.slick.state.{StateBasedGame}
 
-import lib.game.GameConfig
+import lib.slick2d.game.SlickGameConfig
 
 object Button {
   /** width of a button */
@@ -40,8 +41,8 @@ class Button(text: String, val x: Float, val y: Float, val width: Float, val hei
 
   def this(text: String, x: Float, y: Float, act: () => Unit) =
     this(text, x, y,
-      GameConfig.graphics.getFont.getWidth(text) + Button.padding,
-      GameConfig.graphics.getFont.getHeight(text) + Button.padding,
+      SlickGameConfig.graphics.getFont.getWidth(text) + Button.padding,
+      SlickGameConfig.graphics.getFont.getHeight(text) + Button.padding,
       act)
 
 

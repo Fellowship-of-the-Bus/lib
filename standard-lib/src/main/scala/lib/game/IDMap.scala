@@ -25,7 +25,6 @@ class IDMap[IDKind, ValueKind](fileName: String) (implicit extractor: Extractor[
   def apply(id: IDKind): ValueKind = idmap(id)
 
   private def readMap(): Map[IDKind, ValueKind] = {
-    implicit val mapExtractor = rapture.data.GeneralExtractors.mapExtractor[ValueKind, Json]
     val json = Json.parse(scala.io.Source.fromInputStream(openFileAsStream(fileName)).mkString)
     json.as[Map[String,ValueKind]].map({ case (k, v) => (factory.fromString(k), v) })
   }

@@ -1,8 +1,6 @@
 package com.github.fellowship_of_the_bus.lib
 package game
 
-import org.newdawn.slick.Graphics
-
 object DefaultGameConfig {
   val FrameRate = 60
 }
@@ -19,8 +17,6 @@ object GameConfig {
 
   /** true if life bars should be displayed */
   var showLifebars = true
-
-  var graphics: Graphics = null
 
   val Windows = 0
   val MacOS = 1

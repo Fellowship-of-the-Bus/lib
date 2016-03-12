@@ -1,4 +1,4 @@
-package com.github.fellowship_of_the_bus.lib.ui
+package com.github.fellowship_of_the_bus.lib.slick2d.ui
 import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Graphics}
 
 /** Something that can be drawn directly to the screen.

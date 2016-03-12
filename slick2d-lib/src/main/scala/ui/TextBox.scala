@@ -1,5 +1,6 @@
 package com.github.fellowship_of_the_bus
 package lib
+package slick2d
 package ui
 
 import lib.game.GameConfig.{Width,Height}

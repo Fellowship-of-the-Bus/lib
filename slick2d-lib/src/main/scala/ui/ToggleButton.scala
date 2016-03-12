@@ -1,5 +1,7 @@
 package com.github.fellowship_of_the_bus
-package lib.ui
+package lib
+package slick2d
+package ui
 
 import org.newdawn.slick.{Graphics, Color, Input}
 import org.newdawn.slick.state.{StateBasedGame}

@@ -1,5 +1,8 @@
-package com.github.fellowship_of_the_bus.lib
+package com.github.fellowship_of_the_bus
+package lib.slick2d
 package game
+
+import lib.game.GameConfig
 
 import org.newdawn.slick.{Graphics, Color}
 

@@ -1,10 +1,11 @@
-package com.github.fellowship_of_the_bus.lib
+package com.github.fellowship_of_the_bus
+package lib.slick2d
 
 import org.newdawn.slick.{Graphics,AppGameContainer}
 
 package object ui {
   /** draw string s centered horizontally at height h */
   def drawCentred(s: String, h: Float, g: Graphics): Unit = {
-    g.drawString(s, game.GameConfig.Width/2 - s.length()*5, h)
+    g.drawString(s, lib.game.GameConfig.Width/2 - s.length()*5, h)
   }
 }
