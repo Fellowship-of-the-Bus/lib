@@ -10,6 +10,8 @@ addSbtPlugin("com.eed3si9n" % "sbt-unidoc" % "0.3.3")
 // for android-lib
 addSbtPlugin("com.hanhuy.sbt" % "android-sdk-plugin" % "1.5.19")
 
+addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.0.0")
+
 libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.5"
 
 
