@@ -26,7 +26,15 @@ class IDMap[IDKind, ValueKind](fileName: String) (implicit extractor: Extractor[
 
   private def readMap(): Map[IDKind, ValueKind] = {
     val json = Json.parse(scala.io.Source.fromInputStream(openFileAsStream(fileName)).mkString)
-    json.as[Map[String,ValueKind]].map({ case (k, v) => (factory.fromString(k), v) })
+    json.as[Map[String,ValueKind]].map({
+      case (k, v) =>
+        try {
+          // turn pair of (string, Value) into pair of (ID, Value)
+          (factory.fromString(k), v)
+        } catch {
+          case e: java.util.NoSuchElementException => throw new Exception(s"Key $k in ${fileName} not found in IDs: $ids", e)
+        }
+    })
   }
 
   override def toString(): String = (ids, idmap).toString

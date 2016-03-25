@@ -23,6 +23,14 @@ trait Coordinates {
     (x, y)
   }
 
+  def distance (coord: Coordinates): Val = {
+    val (x1, y1) = centerCoord
+    val (x2, y2) = coord.centerCoord
+    val dx = x1 - x2
+    val dy = y1 - y2
+    Math.sqrt(dx*dx + dy*dy).toFloat
+  }
+
   def coordinates(): CoordPair
   def centerCoord(): Coord
 }
