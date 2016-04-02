@@ -18,15 +18,27 @@ class GameTest extends LibTest {
   // TEST //
   test("A new game, by default, should not be over") {
     Given("a brand new game")
-    val testClass = new TestClassForGame()
+    val testClass = new TestClassForGame
     val isGameOver = testClass.getGameOver
 
     Then("the game should not be over yet")
-    isGameOver should === (false) withClue ("// i.e. Game should not be over, but isGameOver was " + isGameOver + " //")
+    isGameOver should be (false) withClue ("// i.e. Game should not be over, but isGameOver is " + isGameOver + " //")
   }
 
   // TEST //
-  test("A game that is not over can be ended") (pending)
+  test("A game that is not over can be ended") {
+    Given("a game in progress")
+    val testClass = new TestClassForGame
+    var isGameOver = testClass.getGameOver //////////// make f'n?
+    assert(isGameOver == false)
+
+    When("Game Over occurs")
+    testClass.gameOver()
+
+    Then("the game is over")
+    isGameOver = testClass.getGameOver
+    isGameOver should be (true) withClue ("// i.e. Game should be over, but isGameOver is " + isGameOver + " //") //////// f'n?
+  }
 
   // TEST //
   test("Game Over has no effect on a game that is already over") (pending)
