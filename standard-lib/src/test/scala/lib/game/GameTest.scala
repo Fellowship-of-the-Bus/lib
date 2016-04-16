@@ -15,31 +15,65 @@ class GameTest extends LibTest {
     def getGameOver: Boolean = isGameOver
   }
 
+  /* For convenience, method to get a game test class in the proper state */
+  def newTestGame(isOver: Boolean): TestClassForGame = {
+    val testGame = new TestClassForGame
+
+    if (isOver) {
+      testGame.gameOver()
+    }
+
+    assert(testGame.getGameOver == isOver, "// i.e. Sanity check for test game object failed")  // should never actually fail
+    testGame   // return the game test object
+  }
+
+  /* Reusable clue text for "game over" Boolean assertions */
+  def gameOverClueText(expectedOver: Boolean, actuallyOver: Boolean): String = {
+    val gameOverFieldName = "isGameOver"
+    var text = "// i.e. Game should "
+
+    if (! expectedOver) {
+      text += "not "
+    }
+
+    // build and return the text string
+    text + "be over, but " + gameOverFieldName + " is " + actuallyOver + " //"
+  }
+
   // TEST //
   test("A new game, by default, should not be over") {
     Given("a brand new game")
-    val testClass = new TestClassForGame
-    val isGameOver = testClass.getGameOver
+    val testGame = newTestGame(false)
 
     Then("the game should not be over yet")
-    isGameOver should be (false) withClue ("// i.e. Game should not be over, but isGameOver is " + isGameOver + " //")
+    val isGameOver = testGame.getGameOver
+    isGameOver should be (false) withClue (gameOverClueText(false, isGameOver))
   }
 
   // TEST //
   test("A game that is not over can be ended") {
     Given("a game in progress")
-    val testClass = new TestClassForGame
-    var isGameOver = testClass.getGameOver //////////// make f'n?
-    assert(isGameOver == false)
+    val testGame = newTestGame(false)
 
     When("Game Over occurs")
-    testClass.gameOver()
+    testGame.gameOver()
 
     Then("the game is over")
-    isGameOver = testClass.getGameOver
-    isGameOver should be (true) withClue ("// i.e. Game should be over, but isGameOver is " + isGameOver + " //") //////// f'n?
+    val isGameOver = testGame.getGameOver
+    isGameOver should be (true) withClue (gameOverClueText(true, isGameOver))
   }
 
   // TEST //
-  test("Game Over has no effect on a game that is already over") (pending)
+  test("Game Over has no effect on a game that is already over") {
+    Given("a game that is over")
+    val testGame = newTestGame(true)
+
+    When("Game Over occurs")
+    Then("nothing breaks")
+    noException should be thrownBy testGame.gameOver() withClue ("// i.e. Something broke")
+
+    And("the game is still over")
+    val isGameOver = testGame.getGameOver
+    isGameOver should be (true) withClue (gameOverClueText(true, isGameOver))
+  }
 }
