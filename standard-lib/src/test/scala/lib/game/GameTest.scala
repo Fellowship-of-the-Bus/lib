@@ -5,7 +5,7 @@ import org.scalatest.junit.JUnitRunner
 import org.junit.runner.RunWith
 
 
-/* Test suite for lib/Game.scala */
+/* Test suite for lib/game/Game.scala */
 @RunWith(classOf[JUnitRunner])
 class GameTest extends LibTest {
 
@@ -41,7 +41,7 @@ class GameTest extends LibTest {
   }
 
   // TEST //
-  test("A new game, by default, should not be over") {
+  test("TEST: A new game, by default, should not be over") {
     Given("a brand new game")
     val testGame = newTestGame(false)
 
@@ -51,7 +51,7 @@ class GameTest extends LibTest {
   }
 
   // TEST //
-  test("A game that is not over can be ended") {
+  test("TEST: A game that is not over can be ended") {
     Given("a game in progress")
     val testGame = newTestGame(false)
 
@@ -64,7 +64,7 @@ class GameTest extends LibTest {
   }
 
   // TEST //
-  test("Game Over has no effect on a game that is already over") {
+  test("TEST: Game Over has no effect on a game that is already over") {
     Given("a game that is over")
     val testGame = newTestGame(true)
 
