@@ -12,6 +12,8 @@ trait Drawable {
 
   def getWidth: Float
   def getHeight: Float
+  def width: Float = getWidth
+  def height: Float = getHeight
   def setRotation(ang: Float): Unit = ()
   def setCenterOfRotation(x: Float, y: Float): Unit = ()
   def update(delta: Long): Unit = ()

@@ -48,7 +48,7 @@ lazy val androidLibSettings = Seq(
   version := "0.1-SNAPSHOT",
   crossScalaVersions := Seq("2.11.8"),
   libraryDependencies ++= Seq(
-    "org.scaloid" %% "scaloid" % "4.1"
+    "org.scaloid" %% "scaloid" % "4.2"
   ),
   unmanagedBase := new java.io.File(System.getenv("ANDROID_HOME")) / "platforms" / androidPlatformTarget
 )
@@ -56,7 +56,7 @@ lazy val androidLibSettings = Seq(
 lazy val commonSettings = Seq(
   organization := "com.github.fellowship_of_the_bus",
   scalaVersion := "2.11.8",
-  crossScalaVersions := Seq("2.10.6", "2.11.8"),
+  // crossScalaVersions := Seq("2.10.6", "2.11.8"),
   crossVersion := CrossVersion.binary,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint"),
   scalacOptions ++= scalacOptionsVersion(scalaVersion.value),

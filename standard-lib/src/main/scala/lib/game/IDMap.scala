@@ -7,16 +7,28 @@ import lib.util.{rand,openFileAsStream}
 import rapture.json._
 import rapture.json.jsonBackends.jackson._
 
-trait IDFactory[IDKind] {
-  def fromString(name: String): IDKind = nameMap(name)
+import scala.io.Source
 
+trait IDFactory[IDKind] {
+  type Parser = PartialFunction[String, IDKind]
+  lazy val fromString: Parser = ids.map(x => (x.toString, x)).toMap
+  /** make new ID from string */
+  protected var functions = Vector[Parser]()
+  def addParser(pf: Parser): Unit = functions = functions :+ pf
+  /** apply first defined partial function in supplied order to get an IDKind */
+  def apply(name: String): IDKind =
+    if (fromString.isDefinedAt(name)) fromString(name)
+    else functions.find(pf => pf.isDefinedAt(name)).map(pf => pf(name)).get
   def ids: Vector[IDKind]
   def random(): IDKind = ids(rand(ids.length))
-
-  private lazy val nameMap: Map[String, IDKind] = ids.map(x => (x.toString, x)).toMap
 }
 
-class IDMap[IDKind, ValueKind](fileName: String) (implicit extractor: Extractor[ValueKind, Json], factory: IDFactory[IDKind]) {
+class IDMap[IDKind, ValueKind](file: Source, fileName: String)(implicit extractor: Extractor[ValueKind, Json], factory: IDFactory[IDKind]) {
+  def this(in: java.io.InputStream, name: String = "")(implicit extractor: Extractor[ValueKind, Json], factory: IDFactory[IDKind]) =
+    this(Source.fromInputStream(in),  name)
+  def this(fileName: String)(implicit extractor: Extractor[ValueKind, Json], factory: IDFactory[IDKind]) =
+    this(openFileAsStream(fileName), fileName)
+
   def ids: Vector[IDKind] = factory.ids
   val idmap: Map[IDKind, ValueKind] = readMap()
 
@@ -25,14 +37,14 @@ class IDMap[IDKind, ValueKind](fileName: String) (implicit extractor: Extractor[
   def apply(id: IDKind): ValueKind = idmap(id)
 
   private def readMap(): Map[IDKind, ValueKind] = {
-    val json = Json.parse(scala.io.Source.fromInputStream(openFileAsStream(fileName)).mkString)
+    val json = Json.parse(file.mkString)
     json.as[Map[String,ValueKind]].map({
       case (k, v) =>
         try {
           // turn pair of (string, Value) into pair of (ID, Value)
-          (factory.fromString(k), v)
+          (factory(k), v)
         } catch {
-          case e: java.util.NoSuchElementException => throw new Exception(s"Key $k in ${fileName} not found in IDs: $ids", e)
+          case e: Exception => throw new Exception(s"Key $k in ${fileName} not found in IDs: $ids", e)
         }
     })
   }
