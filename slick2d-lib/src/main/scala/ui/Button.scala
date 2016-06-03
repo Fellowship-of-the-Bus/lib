@@ -173,7 +173,7 @@ extends Button("", x, y, width, height, act) {
 
     image.setImageColor(red, green, blue)
 
-    image.draw(0, 0, width, height)
+    image.draw(0, 0)
     g.translate(-x, -y)
   }
 }
