@@ -14,7 +14,10 @@ trait TimerManager {
   def addTimer(timer: Timer): Unit = add(timer)
 
   /** Registers a timer event with this TimerListener. */
-  def add(timer: Timer): Unit = {
+  @deprecated("Use TimerManager.+= instead", "0.4")
+  def add(timer: Timer): Unit = this += timer
+
+  def +=(timer: Timer): Unit = {
     timers = timers :+ timer
   }
 
