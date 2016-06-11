@@ -15,6 +15,9 @@ package object util {
     random.nextInt(upper-lower+1) + lower
   }
 
+  /** random element from sequence s */
+  def rand[T](s: Seq[T]): T = s(rand(s.length))
+
   def scanFile(filename: String): Scanner = {
     new Scanner(openFileAsStream(filename))
   }

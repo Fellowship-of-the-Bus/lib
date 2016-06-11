@@ -1,5 +1,5 @@
 package com.github.fellowship_of_the_bus.lib.slick2d.ui
-import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Graphics}
+import org.newdawn.slick.{Animation => SlickAnimation, Image => SlickImage, Graphics, Color}
 
 /** Something that can be drawn directly to the screen.
   * Primary purpose is to unite org.newdawn.slick.Image
@@ -9,7 +9,7 @@ trait Drawable {
   var centerOfRotation = (0.0f, 0.0f)
   var rotation = 0.0f
 
-  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit
+  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false, filter: XColor = NoColor): Unit
   @deprecated("Width and height aren't properly taken into account. Set a scale factor instead", "0.3")
   def draw(x: Float, y: Float, width: Float, height: Float): Unit = draw(x, y)
 
@@ -43,16 +43,28 @@ object Image {
   }
 }
 
+trait XColor {
+  def color: Color
+}
+case object NoColor extends XColor {
+  def color: Color = throw new UnsupportedOperationException("Cannot call color on NoColor")
+}
+case class SomeColor(val color: Color) extends XColor
+
 /** wrapper class for Images */
 case class Image(str: String) extends Drawable {
   val img = new SlickImage(str)
 
-  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit = {
+  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false, filter: XColor = NoColor): Unit = {
     val img = this.img.getFlippedCopy(flipX, flipY)
     val (cx, cy) = centerOfRotation
     img.setCenterOfRotation(cx, cy)
     img.setRotation(rotation)
-    img.draw(x, y, scaleFactor)
+    if (filter == NoColor) {
+      img.draw(x, y, scaleFactor)
+    } else {
+      img.draw(x, y, scaleFactor, filter.color)
+    }
   }
 
   // override def draw(x: Float, y: Float, width: Float, height: Float): Unit = {
@@ -95,12 +107,16 @@ case class Animation(anim: SlickAnimation) extends Drawable {
 // imgs: Array[SlickImage]
 
   // fix so that draw does the scaling
-  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit = {
+  def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false, filter: XColor = NoColor): Unit = {
     val img = anim.getCurrentFrame.getFlippedCopy(flipX, flipY)
     val (cx, cy) = centerOfRotation
     img.setCenterOfRotation(cx, cy)
     img.setRotation(rotation)
-    img.draw(x, y, scaleFactor)
+    if (filter == NoColor) {
+      img.draw(x, y, scaleFactor)
+    } else {
+      img.draw(x, y, scaleFactor, filter.color)
+    }
 
     // anim.draw(x, y, getWidth*scaleFactor, getHeight*scaleFactor)
   }
