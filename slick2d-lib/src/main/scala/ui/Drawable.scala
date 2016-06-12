@@ -8,7 +8,7 @@ trait Drawable {
   var scaleFactor: Float = 1.0f
   var centerOfRotation = (0.0f, 0.0f)
   var rotation = 0.0f
-  var rgb = (1f, 1f, 1f)
+  var rgba = (1f, 1f, 1f, 1f)
 
   def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false, filter: XColor = NoColor): Unit
   @deprecated("Width and height aren't properly taken into account. Set a scale factor instead", "0.2")
@@ -33,7 +33,8 @@ trait Drawable {
   def stopAt(frameIndex: Int): Unit = ()
 
   def reinit(): Unit = ()
-  def setImageColor(r: Float, g: Float, b: Float): Unit = rgb = (r, g, b)
+  def setImageColor(r: Float, g: Float, b: Float): Unit = setImageColor(r, g, b, 1)
+  def setImageColor(r: Float, g: Float, b: Float, a: Float): Unit = rgba = (r, g, b, a)
 }
 
 object Image {
@@ -44,27 +45,18 @@ object Image {
   }
 }
 
-trait XColor {
-  def color: Color
-}
-case object NoColor extends XColor {
-  def color: Color = throw new UnsupportedOperationException("Cannot call color on NoColor")
-}
-case class SomeColor(val color: Color) extends XColor
-
 /** wrapper class for Images */
 case class Image(str: String) extends Drawable {
   val img = new SlickImage(str)
 
   def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false, filter: XColor = NoColor): Unit = {
     val img = this.img.getFlippedCopy(flipX, flipY)
-    val (r, g, b) = rgb
-    img.setImageColor(r, g, b)
+    val (r, g, b, a) = rgba
     val (cx, cy) = centerOfRotation
     img.setCenterOfRotation(cx, cy)
     img.setRotation(rotation)
     if (filter == NoColor) {
-      img.draw(x, y, scaleFactor)
+      img.draw(x, y, scaleFactor, new Color(r, g, b, a))
     } else {
       img.draw(x, y, scaleFactor, filter.color)
     }
