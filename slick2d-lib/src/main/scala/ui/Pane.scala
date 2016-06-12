@@ -6,13 +6,13 @@ package ui
 import org.newdawn.slick.{GameContainer, Graphics, Color}
 import org.newdawn.slick.state.{StateBasedGame}
 
-import game._
+import game.{Game => SlickGame}
 
-class Pane(x: Float, y: Float, width: Float, height: Float)
+abstract class AbstractPane(x: Float, y: Float, width: Float, height: Float, borderColor: Color = Color.black)
           (implicit bg: Color)
     extends AbstractUIElement(x, y, width, height) {
 
-  // type Game <: AnyRef
+  type Game >: Null <: SlickGame
   protected var game: Game = null
 
   private var children: List[UIElement] = List()
@@ -42,7 +42,7 @@ class Pane(x: Float, y: Float, width: Float, height: Float)
 
     g.setColor(bg)
     g.fillRect(0, 0, width, height)
-    g.setColor(Color.black)
+    g.setColor(borderColor)
     g.drawRect(0, 0, width, height)
 
     g.setLineWidth(linewidth)
@@ -65,15 +65,22 @@ class Pane(x: Float, y: Float, width: Float, height: Float)
     }
   }
 
-  def resetGame(g: Game): Unit = {
-    game = g
+  def resetGame(g: SlickGame): Unit = {
+    game = g.asInstanceOf[Game]
     reset()
     for (c <- children) {
-      if (c.isInstanceOf[Pane]) {
-        c.asInstanceOf[Pane].resetGame(game)
+      if (c.isInstanceOf[AbstractPane]) {
+        c.asInstanceOf[AbstractPane].resetGame(g)
       }
     }
   }
 
   def reset(): Unit = ()
+}
+
+class Pane(x: Float, y: Float, width: Float, height: Float, borderColor: Color = Color.black)
+          (implicit bg: Color)
+    extends AbstractPane(x, y, width, height) {
+
+  type Game = SlickGame
 }

@@ -36,7 +36,7 @@ lazy val standardLibSettings = Seq(
 
 lazy val slick2dLibSettings = Seq(
   name := "fellowship-of-the-bus-slick2d-lib",
-  version := "0.1-SNAPSHOT",
+  version := "0.2-SNAPSHOT",
   libraryDependencies ++= Seq(
     "org.slick2d" % "slick2d-core" % "1.0.1"
   )

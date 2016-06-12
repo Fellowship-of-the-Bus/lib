@@ -8,9 +8,10 @@ trait Drawable {
   var scaleFactor: Float = 1.0f
   var centerOfRotation = (0.0f, 0.0f)
   var rotation = 0.0f
+  var rgb = (1f, 1f, 1f)
 
   def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit
-  @deprecated("Width and height aren't properly taken into account. Set a scale factor instead", "0.3")
+  @deprecated("Width and height aren't properly taken into account. Set a scale factor instead", "0.2")
   def draw(x: Float, y: Float, width: Float, height: Float): Unit = draw(x, y)
 
   def getWidth: Float
@@ -32,7 +33,7 @@ trait Drawable {
   def stopAt(frameIndex: Int): Unit = ()
 
   def reinit(): Unit = ()
-  def setImageColor(r: Float, g: Float, b: Float): Unit = ()
+  def setImageColor(r: Float, g: Float, b: Float): Unit = rgb = (r, g, b)
 }
 
 object Image {
@@ -49,6 +50,8 @@ case class Image(str: String) extends Drawable {
 
   def draw(x: Float, y: Float, flipX: Boolean = false, flipY: Boolean = false): Unit = {
     val img = this.img.getFlippedCopy(flipX, flipY)
+    val (r, g, b) = rgb
+    img.setImageColor(r, g, b)
     val (cx, cy) = centerOfRotation
     img.setCenterOfRotation(cx, cy)
     img.setRotation(rotation)
@@ -73,9 +76,6 @@ case class Image(str: String) extends Drawable {
     img.scaleFactor = scaleFactor
     img
   }
-
-  override def setImageColor(r: Float, g: Float, b: Float): Unit =
-    img.setImageColor(r,g,b)
 }
 
 object Animation {
